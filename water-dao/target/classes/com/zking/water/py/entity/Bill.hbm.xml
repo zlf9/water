@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-lazy="false">
-	<class catalog="TapWaterMarketingSystem" name="com.zking.water.py.entity.Bill"
+	<class catalog="water02" name="com.zking.water.py.entity.Bill"
 		table="t_py_bill">
 		<id name="billNo" type="java.lang.String">
 			<column length="20" name="BillNo" />

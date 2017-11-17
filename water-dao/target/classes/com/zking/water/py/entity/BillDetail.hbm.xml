@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="com.zking.water.py.entity.BillDetail" table="t_py_billdetail"
-		catalog="TapWaterMarketingSystem">
+		catalog="water02">
 		<id name="id" type="java.lang.Integer">
 			<column name="ID" />
 			<generator class="native" />

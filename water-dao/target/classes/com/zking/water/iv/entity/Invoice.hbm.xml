@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="com.zking.water.iv.entity.Invoice" table="t_iv_invoice"
-		catalog="TapWaterMarketingSystem">
+		catalog="water02">
 		<id name="invoiceNo" type="java.lang.String">
 			<column name="InvoiceNo" length="10" />
 			<generator class="assigned" />

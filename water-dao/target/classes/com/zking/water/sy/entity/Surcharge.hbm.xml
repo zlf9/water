@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property"
 	default-cascade="none" default-lazy="true">
-	<class catalog="TapWaterMarketingSystem" dynamic-insert="false"
+	<class catalog="water02" dynamic-insert="false"
 		dynamic-update="false" mutable="true" name="com.zking.water.sy.entity.Surcharge"
 		optimistic-lock="version" polymorphism="implicit"
 		select-before-update="false" table="t_sy_surcharge">
