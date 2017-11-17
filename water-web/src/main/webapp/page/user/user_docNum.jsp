@@ -17,12 +17,18 @@
 			<h2>档案号管理</h2>
 
 			<div class="searchUserDiv">
-				用户编码 <input value="0100000987" />
-				用户简码 <input value="张三" />
-				用户姓名 <input />
-				联系电话 <input />
-				家庭住址 <input />
-				<button class="btn btn-small btn-icon btn-person"><span></span>查询用户</button>
+				<form action="action/user/user/findFreetext" method="post">
+					用户编码 <input name="userNo" value="<s:property value='#session.user.userNo'/>" />
+					用户简码 <input name="abc" value="<s:property value='#session.user.abc'/>" />
+					用户姓名 <input name="userName" value="<s:property value='#session.user.userName'/>" />
+					联系电话 <input name="phone" value="<s:property value='#session.user.phone'/>" />
+					家庭住址 <input name="address" value="<s:property value='#session.user.address'/>" />
+						 	 <input type="hidden" name="forward" value="user_docNum" />
+					<button class="btn btn-small btn-icon btn-person" type="submit">
+						<span></span>
+						查询用户
+					</button>
+				</form>
 			</div>
 			
 			<br/><br/>

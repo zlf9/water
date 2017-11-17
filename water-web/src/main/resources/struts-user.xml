@@ -10,6 +10,11 @@
 			<result name="Multiple">/page/sys/sys_selectUser</result>
 			<result name="user_search">/page/user/user_search</result>
 			<result name="user_changeName">/page/user/user_changeName</result>
+			<result name="user_changeBank">/page/user/user_changeBank</result>
+			<result name="user_changeMeter">/page/user/user_changeMeter</result>
+			<result name="user_changeFormula">/page/user/user_changeFormula</result>
+			<result name="user_delete">/page/user/user_delete</result>
+			<result name="user_docNum">/page/user/user_docNum</result>
 		</action>
 	</package>
 </struts>

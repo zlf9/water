@@ -5,6 +5,11 @@
 
 <urlrewrite>
 	<rule>
+		<from>^/login$</from>
+		<to>/login.jsp</to>
+	</rule>
+	
+	<rule>
 		<from>^/page/(\w+)/(\w+)$</from>
 		<to>/page/$1/$2.jsp</to>
 	</rule>
