@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- 输出底层sql语句 -->
+		<property name="hibernate.show_sql">true</property>
+		<!-- 输出底层sql语句格式化 -->
+		<property name="hibernate.format_sql">true</property>
+		<!-- hibernate帮创建表，需要配置之后。update：有则更新，无则创建 -->
+		<property name="hibernate.hbm2ddl.auto">none</property>
+		<!-- 配置数据库方言，让hibernate框架识别不同数据库的自己持有的语句 -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+
+		<!-- 配置映射文件 -->
+		<!-- 数据字典 -->
+		<mapping resource="com/zking/water/base/entity/Dict.hbm.xml" />
+
+		<!-- 系统设置 sy -->
+		<mapping resource="com/zking/water/sy/entity/MeterType.hbm.xml" />
+		<mapping resource="com/zking/water/sy/entity/CostType.hbm.xml" />
+		<mapping resource="com/zking/water/sy/entity/Surcharge.hbm.xml" />
+		<mapping resource="com/zking/water/sy/entity/Emp.hbm.xml" />
+
+		<!-- 用户管理 user -->
+		<mapping resource="com/zking/water/user/entity/User.hbm.xml" />
+		<mapping resource="com/zking/water/user/entity/Formula.hbm.xml" />
+		<mapping resource="com/zking/water/user/entity/Meter.hbm.xml" />
+		<mapping resource="com/zking/water/user/entity/Sms.hbm.xml" />
+		<mapping resource="com/zking/water/user/entity/OrderLite.hbm.xml" />
+
+		<!-- 抄表管理 rd -->
+		<mapping resource="com/zking/water/rd/entity/Volume.hbm.xml" />
+		<mapping resource="com/zking/water/rd/entity/Read.hbm.xml" />
+
+		<!-- 收费管理 py -->
+		<mapping resource="com/zking/water/py/entity/Bill.hbm.xml" />
+		<mapping resource="com/zking/water/py/entity/BillDetail.hbm.xml" />
+		<mapping resource="com/zking/water/py/entity/Pay.hbm.xml" />
+
+		<!-- 发票管理 iv -->
+		<mapping resource="com/zking/water/iv/entity/InInvoice.hbm.xml" />
+		<mapping resource="com/zking/water/iv/entity/Invoice.hbm.xml" />
+		<mapping resource="com/zking/water/iv/entity/OutInvoice.hbm.xml" />
+		<mapping resource="com/zking/water/iv/entity/Archive.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

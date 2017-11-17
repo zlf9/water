@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property"
+	default-cascade="none" default-lazy="true">
+	<class catalog="TapWaterMarketingSystem" dynamic-insert="false"
+		dynamic-update="false" mutable="true" name="com.zking.water.user.entity.Formula"
+		optimistic-lock="version" polymorphism="implicit"
+		select-before-update="false" table="t_us_formula">
+		<id name="id" type="java.lang.Integer">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property generated="never" lazy="false" name="allotText"
+			optimistic-lock="true" type="java.lang.String" unique="false">
+			<column length="10" name="AllotText" />
+		</property>
+		<property generated="never" lazy="false" name="allotType"
+			optimistic-lock="true" type="java.lang.Integer" unique="false">
+			<column name="AllotType" not-null="true" />
+		</property>
+		<property generated="never" lazy="false" name="allotValue"
+			optimistic-lock="true" type="java.lang.Integer" unique="false">
+			<column name="AllotValue" />
+		</property>
+
+		<!-- 一个提比提量只属于一个用户 多个提比提量可以属于同一个用户 -->
+		<many-to-one name="user" class="com.zking.water.user.entity.User">
+			<column name="UserNo"></column>
+		</many-to-one>
+		
+		<many-to-one name="costType" class="com.zking.water.sy.entity.CostType" property-ref="code">
+			<column name="WaterTypeCode"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

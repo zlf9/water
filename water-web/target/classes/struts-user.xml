@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="user" extends="base" namespace="/user">
+		<!-- 由Spring负责创建action实体 -->
+		<!-- struts配置中的class直接写spring中的bean id，这种方式创建的Action可以使用aop进行管理 -->
+		<action name="userAction" class="userAction">
+			<result name="Multiple">/page/sys/sys_selectUser</result>
+			<result name="user_search">/page/user/user_search</result>
+			<result name="user_changeName">/page/user/user_changeName</result>
+		</action>
+	</package>
+</struts>

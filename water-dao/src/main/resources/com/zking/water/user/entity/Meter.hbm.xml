@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property"
+	default-cascade="none" default-lazy="true">
+	<class catalog="TapWaterMarketingSystem" dynamic-insert="false"
+		dynamic-update="false" mutable="true" name="com.zking.water.user.entity.Meter"
+		optimistic-lock="version" polymorphism="implicit"
+		select-before-update="false" table="t_us_meter">
+		<id name="meterNo" type="java.lang.String">
+			<column length="14" name="MeterNo" />
+			<generator class="assigned" />
+		</id>
+		<property generated="never" lazy="false" name="meterName"
+			optimistic-lock="true" type="java.lang.String" unique="false">
+			<column length="20" name="MeterName" not-null="true" />
+		</property>
+		<property generated="never" lazy="false" name="setupDate"
+			optimistic-lock="true" type="java.sql.Timestamp" unique="false">
+			<column name="SetupDate" />
+		</property>
+		<property generated="never" lazy="false" name="factory"
+			optimistic-lock="true" type="java.lang.String" unique="false">
+			<column length="100" name="Factory" not-null="true" />
+		</property>
+		<property generated="never" lazy="false" name="disabled"
+			optimistic-lock="true" type="java.lang.Boolean" unique="false">
+			<column name="Disabled" />
+		</property>
+
+		<!-- 一个水表只属于一种水表类型 多个水表可以属于同一种水表类型 -->
+		<many-to-one name="meterType" class="com.zking.water.sy.entity.MeterType">
+			<column name="MeterTypeId" />
+		</many-to-one>
+
+		<!-- 一个水表只属于一个用户 many-to-one的作用是在Meter表中生成一个外键UserNo,且唯一,并参照User表中的主键 -->
+		<many-to-one name="user" class="com.zking.water.user.entity.User"
+			unique="true">
+			<column name="UserNo" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

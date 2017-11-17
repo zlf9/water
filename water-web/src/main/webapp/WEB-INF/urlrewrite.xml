@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE urlrewrite
+    PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
+    "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
+
+<urlrewrite>
+	<rule>
+		<from>^/page/(\w+)/(\w+)$</from>
+		<to>/page/$1/$2.jsp</to>
+	</rule>
+
+	<rule>
+		<from>^/action/(\w+)/(\w+)/(\w+)((\?(\w*))?)$</from>
+		<to>/$1/$2Action!$3.action$4</to>
+	</rule>
+</urlrewrite>

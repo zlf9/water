@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property"
+	default-cascade="none" default-lazy="true">
+	<class catalog="TapWaterMarketingSystem" dynamic-insert="false"
+		dynamic-update="false" mutable="true" name="com.zking.water.user.entity.User"
+		optimistic-lock="version" polymorphism="implicit"
+		select-before-update="false" table="t_us_user">
+		<id name="userNo" type="java.lang.String">
+			<column length="10" name="UserNo" />
+			<generator class="assigned" />
+		</id>
+		<property generated="never" lazy="false" name="userName"
+			optimistic-lock="true" type="java.lang.String" unique="false">
+			<column length="80" name="UserName" not-null="true" />
+		</property>
+		<property generated="never" lazy="false" name="abc"
+			optimistic-lock="true" type="java.lang.String" unique="false">
+			<column length="80" name="ABC" />
+		</property>
+		<property generated="never" lazy="false" name="createDate"
+			optimistic-lock="true" type="java.sql.Timestamp" unique="false">
+			<column name="CreateDate" />
+		</property>
+		<property generated="never" lazy="false" name="address"
+			optimistic-lock="true" type="java.lang.String" unique="false">
+			<column length="200" name="Address" not-null="true" />
+		</property>
+		<property generated="never" lazy="false" name="phone"
+			optimistic-lock="true" type="java.lang.String" unique="false">
+			<column length="20" name="Phone" not-null="true" />
+		</property>
+		<property generated="never" lazy="false" name="smsphone"
+			optimistic-lock="true" type="java.lang.String" unique="false">
+			<column length="20" name="SMSPhone" not-null="true" />
+		</property>
+		<property generated="never" lazy="false" name="areaId"
+			optimistic-lock="true" type="java.lang.Integer" unique="false">
+			<column name="AreaID" not-null="true" />
+		</property>
+		<property generated="never" lazy="false" name="userType"
+			optimistic-lock="true" type="java.lang.Integer" unique="false">
+			<column name="UserType" not-null="true" />
+		</property>
+		<property generated="never" lazy="false" name="payType"
+			optimistic-lock="true" type="java.lang.Integer" unique="false">
+			<column name="PayType" not-null="true" />
+		</property>
+		<property generated="never" lazy="false" name="bankName"
+			optimistic-lock="true" type="java.lang.String" unique="false">
+			<column length="100" name="BankName" />
+		</property>
+		<property generated="never" lazy="false" name="bankNum"
+			optimistic-lock="true" type="java.lang.String" unique="false">
+			<column length="20" name="BankNum" />
+		</property>
+		<property generated="never" lazy="false" name="formula"
+			optimistic-lock="true" type="java.lang.String" unique="false">
+			<column length="100" name="Formula" not-null="true" />
+		</property>
+		<property generated="never" lazy="false" name="userMoney"
+			optimistic-lock="true" type="java.lang.Double" unique="false">
+			<column name="UserMoney" precision="18" />
+		</property>
+		<property generated="never" lazy="false" name="docNum"
+			optimistic-lock="true" type="java.lang.String" unique="false">
+			<column length="20" name="DocNum" />
+		</property>
+		<property generated="never" lazy="false" name="pwd"
+			optimistic-lock="true" type="java.lang.String" unique="false">
+			<column length="20" name="Pwd" />
+		</property>
+		<property generated="never" lazy="false" name="contractNum"
+			optimistic-lock="true" type="java.lang.String" unique="false">
+			<column length="20" name="ContractNum" />
+		</property>
+		<property generated="never" lazy="false" name="contractDate"
+			optimistic-lock="true" type="java.sql.Timestamp" unique="false">
+			<column name="ContractDate" />
+		</property>
+		<property generated="never" lazy="false" name="volumeOrderIndex"
+			optimistic-lock="true" type="java.lang.Integer" unique="false">
+			<column name="VolumeOrderIndex" />
+		</property>
+		<property generated="never" lazy="false" name="disabled"
+			optimistic-lock="true" type="java.lang.Boolean" unique="false">
+			<column name="Disabled" />
+		</property>
+
+		<!-- 一个用户只能有一个水表 property-ref后的user为Meter中定义的user属性 -->
+		<one-to-one name="meter" class="com.zking.water.user.entity.Meter"
+			cascade="save-update" property-ref="user" />
+
+		<!-- 一个用户只属于一个表册 多个用户可以属于同一个表册 -->
+		<many-to-one name="volume" class="com.zking.water.rd.entity.Volume">
+			<column name="VolumeID"></column>
+		</many-to-one>
+
+		<!-- 一个用户拥有多个提比提量 -->
+		<set name="formulas" cascade="save-update" inverse="true"
+			order-by="id">
+			<key column="UserNo" />
+			<one-to-many class="com.zking.water.user.entity.Formula" />
+		</set>
+		<!-- 一个用户拥有多条抄表信息 -->
+		<set name="reads" cascade="save-update" inverse="true" order-by="readDate desc">
+			<key column="UserNo" />
+			<one-to-many class="com.zking.water.rd.entity.Read" />
+		</set>
+		<!-- 一个用户拥有多条收费单记录 -->
+		<set name="pays" cascade="save-update" inverse="true" order-by="payDate desc">
+			<key column="UserNo" />
+			<one-to-many class="com.zking.water.py.entity.Pay" />
+		</set>
+	</class>
+</hibernate-mapping>

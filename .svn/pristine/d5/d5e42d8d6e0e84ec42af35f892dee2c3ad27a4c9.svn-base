@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.zking.water.rd.entity.Read" table="t_rd_read"
+		catalog="TapWaterMarketingSystem">
+		<id name="id" type="java.lang.Integer">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property name="readYear" type="java.lang.Integer">
+			<column name="ReadYear" not-null="true" />
+		</property>
+		<property name="readMonth" type="java.lang.Integer">
+			<column name="ReadMonth" not-null="true" />
+		</property>
+		<property name="readDate" type="java.sql.Timestamp">
+			<column name="ReadDate" />
+		</property>
+		<property name="preValue" type="java.lang.Integer">
+			<column name="PreValue" not-null="true" />
+		</property>
+		<property name="enter" type="java.lang.Boolean">
+			<column name="Enter" not-null="true" />
+		</property>
+		<property name="curValue" type="java.lang.Integer">
+			<column name="CurValue" not-null="true" />
+		</property>
+		<property name="dial" type="java.lang.Boolean">
+			<column name="Dial" not-null="true" />
+		</property>
+		<property name="amount" type="java.lang.Integer">
+			<column name="Amount" not-null="true" />
+		</property>
+		<property name="formula" type="java.lang.String">
+			<column name="Formula" length="100" />
+		</property>
+		<property name="audit" type="java.lang.Boolean">
+			<column name="Audit" not-null="true" />
+		</property>
+		<property name="auditDate" type="java.sql.Timestamp">
+			<column name="AuditDate" />
+		</property>
+
+		<!-- 一条抄表信息只属于一个用户条抄表信息可以属于同一个用户 -->
+		<many-to-one name="user" class="com.zking.water.user.entity.User">
+			<column name="UserNo"></column>
+		</many-to-one>
+
+		<!-- 一条抄表信息拥有多条水费单记录 -->
+		<set name="bills" cascade="save-update" inverse="true" order-by="createDate desc">
+			<key column="ReadID" />
+			<one-to-many class="com.zking.water.py.entity.Bill" />
+		</set>
+
+		<many-to-one name="readEmp" class="com.zking.water.sy.entity.Emp">
+			<column name="ReadEmpID"></column>
+		</many-to-one>
+		<many-to-one name="auditEmp" class="com.zking.water.sy.entity.Emp">
+			<column name="AuditEmpID"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>
