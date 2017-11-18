@@ -107,7 +107,7 @@ public class UserAction extends BaseAction<User> {
 			}
 		} catch (Exception e) {
 			saveResult = ERROR;// 过户失败
-			throw new RuntimeException("过户失败", e);
+			// throw new RuntimeException("过户失败", e);
 		}
 		return saveResult;
 	}

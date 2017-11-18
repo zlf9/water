@@ -4,6 +4,7 @@
 	"http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 	<package name="base" extends="struts-default" abstract="true">
+		<!-- 定义全局Result -->
 		<global-results>
 			<result name="success">/page/common/success</result>
 			<result name="error">/page/common/error</result>
