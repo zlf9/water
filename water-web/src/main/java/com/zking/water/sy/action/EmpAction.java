@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.zking.water.base.action.BaseAction;
 import com.zking.water.sy.biz.IEmpBiz;
 import com.zking.water.sy.entity.Emp;
+import com.zking.water.util.Constants;
 
 public class EmpAction extends BaseAction<Emp> {
 	private IEmpBiz empBiz;
@@ -30,7 +31,7 @@ public class EmpAction extends BaseAction<Emp> {
 				? empBiz.doLogin(model)
 				: null;// 如果员工编号和员工密码都不为空则根据员工编号和员工密码进行登录验证,否则直接为NULL
 
-		session.setAttribute("empLoginSuccess", e);// 存到会话中,用来保持登录状态
+		session.setAttribute(Constants.EMP_LOGIN_SUCCESS, e);// 存到会话中,用来保持登录状态
 
 		PrintWriter writer = response.getWriter();
 		writer.print(null != e);// 是否登录成功

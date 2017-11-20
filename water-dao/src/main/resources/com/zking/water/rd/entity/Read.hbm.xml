@@ -14,7 +14,7 @@
 		<property name="readMonth" type="java.lang.Integer">
 			<column name="ReadMonth" not-null="true" />
 		</property>
-		<property name="readDate" type="java.sql.Timestamp">
+		<property generated="insert" name="readDate" type="java.sql.Timestamp">
 			<column name="ReadDate" />
 		</property>
 		<property name="preValue" type="java.lang.Integer">
@@ -43,20 +43,24 @@
 		</property>
 
 		<!-- 一条抄表信息只属于一个用户条抄表信息可以属于同一个用户 -->
-		<many-to-one name="user" class="com.zking.water.user.entity.User">
+		<many-to-one name="user" class="com.zking.water.user.entity.User"
+			fetch="join">
 			<column name="UserNo"></column>
 		</many-to-one>
 
 		<!-- 一条抄表信息拥有多条水费单记录 -->
-		<set name="bills" cascade="save-update" inverse="true" order-by="createDate desc">
+		<set name="bills" cascade="save-update" inverse="true" order-by="createDate desc"
+			fetch="join">
 			<key column="ReadID" />
 			<one-to-many class="com.zking.water.py.entity.Bill" />
 		</set>
 
-		<many-to-one name="readEmp" class="com.zking.water.sy.entity.Emp">
+		<many-to-one name="readEmp" class="com.zking.water.sy.entity.Emp"
+			fetch="join">
 			<column name="ReadEmpID"></column>
 		</many-to-one>
-		<many-to-one name="auditEmp" class="com.zking.water.sy.entity.Emp">
+		<many-to-one name="auditEmp" class="com.zking.water.sy.entity.Emp"
+			fetch="join">
 			<column name="AuditEmpID"></column>
 		</many-to-one>
 	</class>

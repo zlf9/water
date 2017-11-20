@@ -2,7 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.zking.water.py.entity.Pay" table="t_py_pay" catalog="water02">
+	<class name="com.zking.water.py.entity.Pay" table="t_py_pay"
+		catalog="water02">
 		<id name="payNo" type="java.lang.String">
 			<column name="PayNo" length="22" />
 			<generator class="assigned" />
@@ -10,7 +11,7 @@
 		<property name="payType" type="java.lang.Integer">
 			<column name="PayType" not-null="true" />
 		</property>
-		<property name="payDate" type="java.sql.Timestamp">
+		<property generated="insert" name="payDate" type="java.sql.Timestamp">
 			<column name="PayDate" />
 		</property>
 		<property name="payMoney" type="java.lang.Double">
@@ -22,16 +23,18 @@
 
 		<!-- 一条收费单记录只对应一张发票 many-to-one的作用是在Pay表中生成一个外键invoice,且唯一,并参照Invoice表中的主键 -->
 		<many-to-one name="invoice" class="com.zking.water.iv.entity.Invoice"
-			unique="true">
+			unique="true" fetch="join">
 			<column name="Invoice"></column>
 		</many-to-one>
 
 		<!-- 一条收费单记录只属于一个用户 多条收费单记录可以属于同一个用户 -->
-		<many-to-one name="user" class="com.zking.water.user.entity.User">
+		<many-to-one name="user" class="com.zking.water.user.entity.User"
+			fetch="join">
 			<column name="UserNo"></column>
 		</many-to-one>
 
-		<many-to-one name="emp" class="com.zking.water.sy.entity.Emp">
+		<many-to-one name="emp" class="com.zking.water.sy.entity.Emp"
+			fetch="join">
 			<column name="EmpID"></column>
 		</many-to-one>
 	</class>

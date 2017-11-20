@@ -43,7 +43,7 @@
 			<column name="Disabled" />
 		</property>
 
-		<set name="costTypes" table="t_sy_surcharge">
+		<set name="costTypes" table="t_sy_surcharge" fetch="join">
 			<key column="WaterTypeID"></key>
 			<many-to-many class="com.zking.water.sy.entity.CostType">
 				<column name="SurchargeID"></column>

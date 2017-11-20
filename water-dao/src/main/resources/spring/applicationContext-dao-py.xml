@@ -6,7 +6,7 @@
             http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- 收费管理 py -->
-	<bean name="billDAO" class="com.zking.water.py.dao.impl.BillDAOImpl"
+	<bean id="billDAO" class="com.zking.water.py.dao.impl.BillDAOImpl"
 		parent="baseDAO">
 	</bean>
 

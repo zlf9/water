@@ -40,7 +40,7 @@
 		</property>
 
 		<!-- 一种水表类型有多个水表 -->
-		<set name="meters" cascade="save-update" inverse="true">
+		<set name="meters" cascade="save-update" inverse="true" fetch="join">
 			<key column="meterNo"></key>
 			<one-to-many class="com.zking.water.user.entity.Meter" />
 		</set>

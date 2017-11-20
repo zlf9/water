@@ -7,13 +7,13 @@
 
 
 	<!-- 系统设置 sy -->
-	<bean name="meterTypeDAO" class="com.zking.water.sy.dao.impl.MeterTypeDAOImpl"
+	<bean id="meterTypeDAO" class="com.zking.water.sy.dao.impl.MeterTypeDAOImpl"
 		parent="baseDAO">
 	</bean>
-	<bean name="costTypeDAO" class="com.zking.water.sy.dao.impl.CostTypeDAOImpl"
+	<bean id="costTypeDAO" class="com.zking.water.sy.dao.impl.CostTypeDAOImpl"
 		parent="baseDAO">
 	</bean>
-	<bean name="empDAO" class="com.zking.water.sy.dao.impl.EmpDAOImpl"
+	<bean id="empDAO" class="com.zking.water.sy.dao.impl.EmpDAOImpl"
 		parent="baseDAO">
 	</bean>
 </beans>

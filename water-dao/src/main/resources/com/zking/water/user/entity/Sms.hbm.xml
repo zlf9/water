@@ -10,7 +10,7 @@
 			<column name="ID" />
 			<generator class="native" />
 		</id>
-		<property generated="never" lazy="false" name="sendTime"
+		<property generated="insert" lazy="false" name="sendTime"
 			optimistic-lock="true" type="java.sql.Timestamp" unique="false">
 			<column name="SendTime" />
 		</property>
@@ -23,10 +23,10 @@
 			<column name="Typee" not-null="true" />
 		</property>
 
-		<many-to-one name="user" class="com.zking.water.user.entity.User">
+		<many-to-one name="user" class="com.zking.water.user.entity.User" fetch="join">
 			<column name="UserNo"></column>
 		</many-to-one>
-		<many-to-one name="emp" class="com.zking.water.sy.entity.Emp">
+		<many-to-one name="emp" class="com.zking.water.sy.entity.Emp" fetch="join">
 			<column name="EmpID"></column>
 		</many-to-one>
 	</class>

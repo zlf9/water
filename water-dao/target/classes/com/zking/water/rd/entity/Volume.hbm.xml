@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property"
 	default-cascade="none" default-lazy="true">
-	<class catalog="water02" dynamic-insert="false"
-		dynamic-update="false" mutable="true" name="com.zking.water.rd.entity.Volume"
+	<class catalog="water02" dynamic-insert="false" dynamic-update="false"
+		mutable="true" name="com.zking.water.rd.entity.Volume"
 		optimistic-lock="version" polymorphism="implicit"
 		select-before-update="false" table="t_rd_volume">
 		<id name="id" type="java.lang.Integer">
@@ -32,8 +32,9 @@
 		</property>
 
 		<!-- 一个表册拥有多个用户 -->
-		<set name="users" cascade="save-update" inverse="true" order-by="createDate desc">
-			<key column="ID" />
+		<set name="users" cascade="save-update" inverse="true" order-by="createDate desc"
+			fetch="join">
+			<key column="userNo" />
 			<one-to-many class="com.zking.water.user.entity.User" />
 		</set>
 	</class>

@@ -24,19 +24,20 @@
 			type="java.lang.Boolean">
 			<column name="Balance" not-null="true" />
 		</property>
-		<property generated="never" lazy="false" name="balanceDate"
+		<property generated="insert" lazy="false" name="balanceDate"
 			type="java.sql.Timestamp">
 			<column name="BalanceDate" />
 		</property>
-		
+
 		<!-- 一条水费单记录只属于一条抄表信息 多条水费单记录可以属于同一个用户 -->
-		<many-to-one class="com.zking.water.rd.entity.Read" name="read">
+		<many-to-one class="com.zking.water.rd.entity.Read" name="read"
+			fetch="join">
 			<column name="ReadID" />
 		</many-to-one>
-		
+
 		<!-- 一条水费单记录拥有多条水费单详情记录 -->
 		<set cascade="save-update" inverse="true" name="billDetails"
-			order-by="ID" sort="unsorted">
+			order-by="ID" sort="unsorted" fetch="join">
 			<key column="BillNo" />
 			<one-to-many class="com.zking.water.py.entity.BillDetail" />
 		</set>

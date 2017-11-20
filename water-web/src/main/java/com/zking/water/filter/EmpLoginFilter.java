@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang3.StringUtils;
 
 import com.zking.water.sy.entity.Emp;
+import com.zking.water.util.Constants;
 
 /**
  * 员工登录过滤器
@@ -32,7 +33,7 @@ public class EmpLoginFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) response;
 		HttpSession session = req.getSession();// 根据request得到session
 
-		Object e = session.getAttribute("empLoginSuccess");// 从session作用域中取出员工登录成功对象
+		Object e = session.getAttribute(Constants.EMP_LOGIN_SUCCESS);// 从session作用域中取出员工登录成功对象
 
 		// 如果对象不为空并且员工编号和员工密码都不为空,则通过。否则不通过且跳到登录页面
 		if (null != e && StringUtils.isNotBlank(((Emp)e).getEmpNo()) && StringUtils.isNotBlank(((Emp)e).getPwd())) {

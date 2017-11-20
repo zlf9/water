@@ -28,11 +28,13 @@
 		</property>
 
 		<!-- 一条水费单记录详情只属于一条水费单记录 多条水费单记录详情可以属于同一条水费单记录 -->
-		<many-to-one name="bill" class="com.zking.water.py.entity.Bill">
+		<many-to-one name="bill" class="com.zking.water.py.entity.Bill"
+			fetch="join">
 			<column name="BillNo"></column>
 		</many-to-one>
-		
-		<many-to-one name="costType" class="com.zking.water.sy.entity.CostType" property-ref="code">
+
+		<many-to-one name="costType" class="com.zking.water.sy.entity.CostType"
+			property-ref="code" fetch="join">
 			<column name="CostTypeCode"></column>
 		</many-to-one>
 	</class>

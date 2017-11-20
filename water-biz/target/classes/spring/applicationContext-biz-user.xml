@@ -16,4 +16,8 @@
 		parent="baseBiz">
 		<property name="meterDAO" ref="meterDAO"></property>
 	</bean>
+	<bean id="orderLiteBiz" class="com.zking.water.user.biz.impl.OrderLiteBizImpl"
+		parent="baseBiz">
+		<property name="orderLiteDAO" ref="orderLiteDAO"></property>
+	</bean>
 </beans>

@@ -14,7 +14,7 @@
 			optimistic-lock="true" type="java.lang.Integer" unique="false">
 			<column name="OrderType" not-null="true" />
 		</property>
-		<property generated="never" lazy="false" name="datee"
+		<property generated="insert" lazy="false" name="datee"
 			optimistic-lock="true" type="java.sql.Timestamp" unique="false">
 			<column name="Datee" />
 		</property>
@@ -23,10 +23,10 @@
 			<column length="1000" name="Description" />
 		</property>
 
-		<many-to-one name="user" class="com.zking.water.user.entity.User">
+		<many-to-one name="user" class="com.zking.water.user.entity.User" fetch="join">
 			<column name="UserNo"></column>
 		</many-to-one>
-		<many-to-one name="emp" class="com.zking.water.sy.entity.Emp">
+		<many-to-one name="emp" class="com.zking.water.sy.entity.Emp" fetch="join">
 			<column name="EmpID"></column>
 		</many-to-one>
 	</class>

@@ -17,17 +17,20 @@
 		<property name="counts" type="java.lang.Integer">
 			<column name="Counts" not-null="true" />
 		</property>
-		<property name="outDate" type="java.sql.Timestamp">
+		<property generated="insert" name="outDate" type="java.sql.Timestamp">
 			<column name="OutDate" />
 		</property>
 
-		<many-to-one name="emp" class="com.zking.water.sy.entity.Emp">
+		<many-to-one name="emp" class="com.zking.water.sy.entity.Emp"
+			fetch="join">
 			<column name="EmpID"></column>
 		</many-to-one>
-		<many-to-one name="inInvoice" class="com.zking.water.iv.entity.InInvoice">
+		<many-to-one name="inInvoice" class="com.zking.water.iv.entity.InInvoice"
+			fetch="join">
 			<column name="InID"></column>
 		</many-to-one>
-		<many-to-one name="outEmp" class="com.zking.water.sy.entity.Emp">
+		<many-to-one name="outEmp" class="com.zking.water.sy.entity.Emp"
+			fetch="join">
 			<column name="OutEmpID"></column>
 		</many-to-one>
 	</class>

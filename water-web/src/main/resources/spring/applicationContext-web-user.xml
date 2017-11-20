@@ -8,7 +8,7 @@
             http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<!-- 用户管理 user -->
-	<bean id="userActionTarget" class="com.zking.water.user.action.UserAction"
+	<bean id="userAction" class="com.zking.water.user.action.UserAction"
 		scope="prototype" parent="baseAction">
 		<property name="userBiz" ref="userBiz"></property>
 		<property name="meterBiz" ref="meterBiz"></property>

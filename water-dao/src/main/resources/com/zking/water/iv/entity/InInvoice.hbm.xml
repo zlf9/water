@@ -20,11 +20,12 @@
 		<property name="counts" type="java.lang.Integer">
 			<column name="Counts" not-null="true" />
 		</property>
-		<property name="inDate" type="java.sql.Timestamp">
+		<property generated="insert" name="inDate" type="java.sql.Timestamp">
 			<column name="InDate" />
 		</property>
 
-		<many-to-one name="inEmp" class="com.zking.water.sy.entity.Emp">
+		<many-to-one name="inEmp" class="com.zking.water.sy.entity.Emp"
+			fetch="join">
 			<column name="InEmpID"></column>
 		</many-to-one>
 	</class>

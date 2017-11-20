@@ -24,11 +24,11 @@
 		</property>
 
 		<!-- 一个提比提量只属于一个用户 多个提比提量可以属于同一个用户 -->
-		<many-to-one name="user" class="com.zking.water.user.entity.User">
+		<many-to-one name="user" class="com.zking.water.user.entity.User" fetch="join">
 			<column name="UserNo"></column>
 		</many-to-one>
 		
-		<many-to-one name="costType" class="com.zking.water.sy.entity.CostType" property-ref="code">
+		<many-to-one name="costType" class="com.zking.water.sy.entity.CostType" property-ref="code" fetch="join">
 			<column name="WaterTypeCode"></column>
 		</many-to-one>
 	</class>

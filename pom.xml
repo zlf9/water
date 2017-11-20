@@ -11,13 +11,13 @@
 		<repository>
 			<id>release</id>
 			<name>Project Release</name>
-			<url>http://192.168.43.26:8081/nexus/content/repositories/releases/</url>
+			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
 		</repository>
 
 		<snapshotRepository>
 			<id>snapshots</id>
 			<name>Project SNAPSHOTS</name>
-			<url>http://192.168.43.26:8081/nexus/content/repositories/snapshots/</url>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 

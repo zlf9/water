@@ -103,6 +103,18 @@ public class BaseAction<T> implements ModelDriven<T>, ServletRequestAware, Servl
 		this.application = context;
 	}
 
+	public HttpServletResponse getResponse() {
+		return response;
+	}
+
+	public HttpSession getSession() {
+		return session;
+	}
+
+	public ServletContext getApplication() {
+		return application;
+	}
+
 	/**
 	 * 根据字典名字得到字典对象集合
 	 * 

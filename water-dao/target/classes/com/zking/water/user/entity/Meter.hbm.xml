@@ -28,13 +28,13 @@
 		</property>
 
 		<!-- 一个水表只属于一种水表类型 多个水表可以属于同一种水表类型 -->
-		<many-to-one name="meterType" class="com.zking.water.sy.entity.MeterType">
+		<many-to-one name="meterType" class="com.zking.water.sy.entity.MeterType" fetch="join">
 			<column name="MeterTypeId" />
 		</many-to-one>
 
 		<!-- 一个水表只属于一个用户 many-to-one的作用是在Meter表中生成一个外键UserNo,且唯一,并参照User表中的主键 -->
 		<many-to-one name="user" class="com.zking.water.user.entity.User"
-			unique="true">
+			unique="true" fetch="join">
 			<column name="UserNo" />
 		</many-to-one>
 	</class>
