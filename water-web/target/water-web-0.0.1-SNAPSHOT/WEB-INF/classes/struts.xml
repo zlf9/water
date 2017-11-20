@@ -5,5 +5,9 @@
 <struts>
 	<include file="struts-default.xml"></include>
 	<include file="struts-base.xml"></include>
+	<include file="struts-sy.xml"></include>
 	<include file="struts-user.xml"></include>
+	<include file="struts-rd.xml"></include>
+	<include file="struts-py.xml"></include>
+	<include file="struts-iv.xml"></include>
 </struts>

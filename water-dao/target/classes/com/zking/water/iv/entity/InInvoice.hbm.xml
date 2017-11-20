@@ -24,8 +24,7 @@
 			<column name="InDate" />
 		</property>
 
-		<many-to-one name="inEmp" class="com.zking.water.sy.entity.Emp"
-			fetch="join">
+		<many-to-one name="inEmp" class="com.zking.water.sy.entity.Emp">
 			<column name="InEmpID"></column>
 		</many-to-one>
 	</class>

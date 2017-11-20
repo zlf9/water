@@ -37,7 +37,7 @@
 
 		<!-- 一条水费单记录拥有多条水费单详情记录 -->
 		<set cascade="save-update" inverse="true" name="billDetails"
-			order-by="ID" sort="unsorted" fetch="join">
+			order-by="ID" sort="unsorted">
 			<key column="BillNo" />
 			<one-to-many class="com.zking.water.py.entity.BillDetail" />
 		</set>

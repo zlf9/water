@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>湖南省自来水公司营销管理信息系统</title>
 <script type="text/javascript">
-	location.href = "page/common/login";
+	location.href = "login";
 </script>
 </head>
 </html>

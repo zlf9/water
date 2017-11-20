@@ -17,6 +17,7 @@
 				<interceptor-ref name="generatingOperationRecordsInterceptor" />
 			</interceptor-stack>
 		</interceptors>
+		<default-interceptor-ref name="userStack" />
 
 		<!-- 由Spring负责创建action实体 -->
 		<!-- struts配置中的class直接写spring中的bean id，这种方式创建的Action可以使用aop进行管理 -->
@@ -29,7 +30,10 @@
 			<result name="user_changeFormula">/page/user/user_changeFormula</result>
 			<result name="user_delete">/page/user/user_delete</result>
 			<result name="user_docNum">/page/user/user_docNum</result>
-			<interceptor-ref name="userStack"></interceptor-ref>
+		</action>
+
+		<action name="orderLiteAction" class="orderLiteAction">
+			<result name="user_reportShortcut">/page/user/user_reportShortcut</result>
 		</action>
 	</package>
 </struts>

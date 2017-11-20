@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="                                               
+            http://www.springframework.org/schema/beans    
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 系统设置 sy -->
+	<bean id="costTypeAction" class="com.zking.water.sy.action.CostTypeAction"
+		scope="prototype" parent="baseAction">
+		<property name="costTypeBiz" ref="costTypeBiz"></property>
+	</bean>
+	<bean id="meterTypeAction" class="com.zking.water.sy.action.MeterTypeAction"
+		scope="prototype" parent="baseAction">
+		<property name="meterTypeBiz" ref="meterTypeBiz"></property>
+	</bean>
+	<bean id="empAction" class="com.zking.water.sy.action.EmpAction"
+		scope="prototype" parent="baseAction">
+		<property name="empBiz" ref="empBiz"></property>
+	</bean>
+</beans>

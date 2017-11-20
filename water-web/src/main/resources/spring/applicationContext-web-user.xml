@@ -13,4 +13,8 @@
 		<property name="userBiz" ref="userBiz"></property>
 		<property name="meterBiz" ref="meterBiz"></property>
 	</bean>
+	<bean id="orderLiteAction" class="com.zking.water.user.action.OrderLiteAction"
+		scope="prototype" parent="baseAction">
+		<property name="orderLiteBiz" ref="orderLiteBiz"></property>
+	</bean>
 </beans>

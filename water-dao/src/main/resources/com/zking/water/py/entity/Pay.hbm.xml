@@ -23,13 +23,12 @@
 
 		<!-- 一条收费单记录只对应一张发票 many-to-one的作用是在Pay表中生成一个外键invoice,且唯一,并参照Invoice表中的主键 -->
 		<many-to-one name="invoice" class="com.zking.water.iv.entity.Invoice"
-			unique="true" fetch="join">
+			unique="true">
 			<column name="Invoice"></column>
 		</many-to-one>
 
 		<!-- 一条收费单记录只属于一个用户 多条收费单记录可以属于同一个用户 -->
-		<many-to-one name="user" class="com.zking.water.user.entity.User"
-			fetch="join">
+		<many-to-one name="user" class="com.zking.water.user.entity.User">
 			<column name="UserNo"></column>
 		</many-to-one>
 

@@ -61,8 +61,9 @@ public class UserAction extends BaseAction<User> {
 		PageBean pageBean = handlerPageBean();
 		List<User> users = userBiz.findFreetext(model, pageBean);// 模糊查询返回用户对象集合
 		/*
-		 * if (null != users) { switch (users.size()) { case 0: result = null; break;
-		 * case 1: result = users.get(0); break; default: result = users; break; } }
+		 * if (null != users) { switch (pageBean.getTotalRecord()) { case 0: result =
+		 * null; break; case 1: result = users.get(0); break; default: result = users;
+		 * break; } }
 		 */
 
 		result = null == users || pageBean.getTotalRecord() < 1 ? null

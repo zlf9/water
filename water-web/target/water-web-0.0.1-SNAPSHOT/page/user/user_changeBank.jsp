@@ -10,13 +10,6 @@
 	
 	<%@ include file="/common/top.jsp"%>
 	
-	<div id="masthead">
-		<div>
-			<span id="pagetitle"><a href="javascript:;">快捷代扣</a></span>
-			<span id="welcome_span">欢迎回来，马云</span>
-		</div>
-	</div> <!-- #masthead -->	
-	
 	<div id="content" class="xgrid" >
 
 		<div class="x12">
@@ -24,36 +17,40 @@
 			<h2>快捷代扣</h2>
 
 			<div class="searchUserDiv">
-				用户编码 <input value="0100000987" />
-				用户简码 <input value="张三" />
-				用户姓名 <input />
-				联系电话 <input />
-				家庭住址 <input />
-				<button class="btn btn-small btn-icon btn-person"><span></span>查询用户</button>
+				<form action="action/user/user/findFreetext" method="post">
+					用户编码 <input name="userNo" value="<s:property value='#session.user.userNo'/>" />
+					用户简码 <input name="abc" value="<s:property value='#session.user.abc'/>" />
+					用户姓名 <input name="userName" value="<s:property value='#session.user.userName'/>" />
+					联系电话 <input name="phone" value="<s:property value='#session.user.phone'/>" />
+					家庭住址 <input name="address" value="<s:property value='#session.user.address'/>" />
+						 	 <input type="hidden" name="forward" value="user_changeBank" />
+					<button class="btn btn-small btn-icon btn-person" type="submit">
+						<span></span>
+						查询用户
+					</button>
+				</form>
 			</div>
 			
 			<br/><br/>
 			
 			
 			
-			<div class="form label-inline uniform">
+			<div class="form label-inline">
 				<h3 style="width:50%;">快捷代扣</h3>
-				<div class="field"><label for="id">用户编码</label> <input id="id" name="fname" size="50" type="text" class="medium" disabled="disabled" value="0100000987" /></div>
+				<div class="field"><label for="oldUserNo">用户编码</label> <input id="oldUserNo" name="oldUserNo" size="50" type="text" class="medium" disabled="disabled" value="0100000987" /></div>
 				
-				<div class="field"><label for="name">用户姓名</label> <input id="name" name="lname" size="50" type="text" class="medium" disabled="disabled" value="张三" /></div>
-				<div class="field"><label for="name">原收款方式</label> <input id="name" name="lname" size="50" type="text" class="medium" disabled="disabled" value="坐收" /></div>
-				<div class="field"><label for="name">原开户银行</label> <input id="name" name="lname" size="50" type="text" class="medium" disabled="disabled" value="" /></div>
-				<div class="field"><label for="name">原银行账号</label> <input id="name" name="lname" size="50" type="text" class="medium" disabled="disabled" value="" /></div>
+				<div class="field"><label for="oldUserName">用户姓名</label> <input id="oldUserName" name="oldUserName" size="50" type="text" class="medium" disabled="disabled" value="张三" /></div>
+				<div class="field"><label for="oldPayType">原收款方式</label> <input id="oldPayType" name="oldPayType" size="50" type="text" class="medium" disabled="disabled" value="坐收" /></div>
+				<div class="field"><label for="oldBankName">原开户银行</label> <input id="oldBankName" name="oldBankName" size="50" type="text" class="medium" disabled="disabled" value="" /></div>
+				<div class="field"><label for="oldBankNum">原银行账号</label> <input id="oldBankNum" name="oldBankNum" size="50" type="text" class="medium" disabled="disabled" value="" /></div>
 				
 				
-				
-				<div class="field"><label for="name">新收款方式</label> <select style="width:158px;">
-											<option>坐收</option>
-											<option>走收</option>
-											<option selected="selected">银行代扣</option>
-										</select></div>
-				<div class="field"><label for="name">新开户银行</label> <input id="name" name="lname" size="50" type="text" class="medium" value="" /></div>
-				<div class="field"><label for="name">新银行账号</label> <input id="name" name="lname" size="50" type="text" class="medium" value="" /></div>
+				<input id="userNo" name="userNo" value="0100000987" />
+				<div class="field"><label for="payType">新收款方式</label> 
+					<s:select list="#Action." name="payType"></s:select>
+				</div>
+				<div class="field"><label for="bankName">新开户银行</label> <input id="bankName" name="bankName" size="50" type="text" class="medium" value="" /></div>
+				<div class="field"><label for="bankNum">新银行账号</label> <input id="bankNum" name="bankNum" size="50" type="text" class="medium" value="" /></div>
 				
 
 				<div class="buttonrow">

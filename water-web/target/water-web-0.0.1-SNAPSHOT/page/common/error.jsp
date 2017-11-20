@@ -11,12 +11,6 @@
 	
 	<%@ include file="/common/top.jsp"%>
 	
-	<div id="masthead">
-		<div>
-			<span id="welcome_span">欢迎回来，马云</span>
-		</div>
-	</div> <!-- #masthead -->	
-	
 	<div id="content" class="xgrid" >
 
 		<div class="x12">

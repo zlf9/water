@@ -10,13 +10,6 @@
 	
 	<%@ include file="/common/top.jsp"%>
 	
-	<div id="masthead">
-		<div>
-			<span id="pagetitle"><a href="javascript:;">短信群发</a></span>
-			<span id="welcome_span">欢迎回来，马云</span>
-		</div>
-	</div> <!-- #masthead -->	
-	
 	<div id="content" class="xgrid" >
 
 		<div class="x12">

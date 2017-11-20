@@ -9,19 +9,19 @@
 		//查询用户
 		function searchUser(){	
 			//显示选择用户的界面
-			showWindow({url:'action/user/user/freetext', callback: function(val){
+			showWindow({url:'action/user/user/findFreetext', callback: function(val){
 				//alert(val.addr);  //回调处理
 			}});
 		}
 		
 		//显示抄表详情
 		function showReadingDetail(id){
-			showWindow({url:'action/user/read/getById?id='+id, width:600, height:400});
+			showWindow({url:'action/rd/read/getById?id='+id, width:600, height:400});
 		}
 		
 		//显示水费单详情
 		function showBillDetail(billNo){
-			showWindow({url:"action/user/bill/getById?billNo="+billNo, width:800, height:600});
+			showWindow({url:"action/py/bill/getById?billNo="+billNo, width:800, height:600});
 		}
 
 	</script>
@@ -31,23 +31,17 @@
 	
 	<%@ include file="/common/top.jsp"%>
 
-	<div id="masthead">
-		<div>
-			<span id="pagetitle"><a href="javascript:;">用户查询</a></span>
-			<span id="welcome_span">欢迎回来，马云</span>
-		</div>
-	</div> <!-- #masthead -->		
-	
 	<div id="content" class="xgrid">
 		<div class="x12">
 			<h2>用户查询</h2>
 			<div class="searchUserDiv">
-				<form action="action/user/user/freetext" method="post">
-					用户编码 <input name="userNo" />
-					用户简码 <input name="abc" />
-					用户姓名 <input name="userName" />
-					联系电话 <input name="phone" />
-					家庭住址 <input name="address" />
+				<form action="action/user/user/findFreetext" method="post">
+					用户编码 <input name="userNo" value="<s:property value='#session.user.userNo'/>" />
+					用户简码 <input name="abc" value="<s:property value='#session.user.abc'/>" />
+					用户姓名 <input name="userName" value="<s:property value='#session.user.userName'/>" />
+					联系电话 <input name="phone" value="<s:property value='#session.user.phone'/>" />
+					家庭住址 <input name="address" value="<s:property value='#session.user.address'/>" />
+							 <input type="hidden" name="forward" value="user_search" />
 					<button class="btn btn-small btn-icon btn-person" 
 						onclick="javascript:$('.searchUserDiv').submit();">
 						<span></span>
@@ -131,7 +125,7 @@
 											<td>短信电话</td>
 											<td><input readonly="readonly" value="<s:property value='result.smsphone'/>" /></td>
 											<td>用户地址</td>
-											<td colspan="3"><input size="68" readonly="readonly" 
+											<td colspan="3"><input size="64" readonly="readonly" 
 																value="<s:property value='result.address'/>" /></td>
 										</tr>
 										<tr>
@@ -208,7 +202,7 @@
 											<td>表身码</td>
 											<td><input readonly="readonly" value="<s:property value='result.meter.meterName'/>" /></td>
 											<td>起始底码</td>
-											<td><input readonly="readonly" value="<s:property value='result.meter.startValue'/>" /></td>
+											<td><input readonly="readonly" value="<s:property value='result.meter.meterType.minValue'/>" /></td>
 										</tr>
 										<tr>
 											<td>水表类型</td>
@@ -222,7 +216,7 @@
 											<td>装表日期</td>
 											<td><input readonly="readonly" value="<s:date name="result.meter.setupDate" format="yyyy年MM月dd日"/>" /></td>
 											<td>水表厂家</td>
-											<td colspan="3"><input size="68" readonly="readonly" value="<s:property value='result.meter.factory'/>" /></td>
+											<td colspan="3"><input size="64" readonly="readonly" value="<s:property value='result.meter.factory'/>" /></td>
 										</tr>
 									</tbody>
 								</table>
@@ -390,6 +384,7 @@
 	
 	<%@ include file="/common/bottom.jsp"%>	
 	
+	<c:remove var="user" scope="session"/>
 </div> <!-- #wrapper -->
 
 </body> 

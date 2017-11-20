@@ -11,23 +11,12 @@
 <body> 
 
 <div id="wrapper">
-	
-		
-	
 	<%@ include file="/common/top.jsp"%>
-	
-	<div id="masthead">
-		<div>
-			<span id="pagetitle"><a href="javascript:;">我的工作台</a></span>
-			<span id="welcome_span">欢迎回来，马云</span>
-		</div>
-	</div> <!-- #masthead -->	
-	
 	<div id="content" class="xgrid">
 		
 		<div id="welcome" class="x4">			
 			
-			<p><strong><a href="./pages/text.html">欢迎回来, 马云</a></strong><br /></p>
+			<p><strong><a href="./pages/text.html">欢迎回来, ${empLoginSuccess.empName }</a></strong><br /></p>
 			
 			<table class="data info_table">
 				<tbody>	

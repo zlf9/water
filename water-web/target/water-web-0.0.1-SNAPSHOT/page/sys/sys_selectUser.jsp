@@ -4,10 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <%@ include file="/common/head.jsp"%>
-
 <script type="text/javascript">
 	function ok(no) {
-		location.href = "action/user/user/findByUserNo?userNo="+no;
+		location.href = "action/user/user/findByUserNo?userNo="+no+"&forward=${forward}";
 	}
 </script>
 <style type="text/css">
@@ -45,7 +44,6 @@ table.data thead th {
 						</tr>
 					</s:iterator>
 				</s:if>
-
 			</tbody>
 		</table>
 		

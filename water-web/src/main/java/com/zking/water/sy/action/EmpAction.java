@@ -1,6 +1,7 @@
 package com.zking.water.sy.action;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -37,6 +38,29 @@ public class EmpAction extends BaseAction<Emp> {
 		writer.print(null != e);// 是否登录成功
 		writer.close();
 
+		return NONE;
+	}
+
+	/**
+	 * 登出
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String doLogout() throws Exception {
+		session.removeAttribute(Constants.EMP_LOGIN_SUCCESS);// 从会话中删除,用来保持登录状态
+		return Constants.VIEW_LOGIN;
+	}
+
+	/**
+	 * 查询全部员工
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String findAllEmp() throws Exception {
+		List<Emp> emps = empBiz.findAll();// 查询全部返回所有员工的对象集合
+		result = emps == null || emps.size() < 1 ? null : emps;// 如果没有查到则为NULL，有则为所有员工的对象集合
 		return NONE;
 	}
 }

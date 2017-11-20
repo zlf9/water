@@ -44,7 +44,6 @@ table.data thead th {
 						</tr>
 					</s:iterator>
 				</s:if>
-
 			</tbody>
 		</table>
 		

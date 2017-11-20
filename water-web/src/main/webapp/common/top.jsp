@@ -124,7 +124,6 @@
 							<li><a href="page/sys_surcharge">附加费设定</a></li>	
 							<li><a href="page/sys_flow">流程配置</a></li>	
 						</ul>
-						
 					</div>
 				</li>
 				
@@ -135,7 +134,7 @@
 						<ul>
 							<li><a href="page/common/workspace">我的工作台</a></li>
 							<li><a href="page/sys/sys_pwd">修改密码</a></li>
-							<li><a href="login">退出系统</a></li>
+							<li><a href="action/sy/emp/doLogout">退出系统</a></li>
 						</ul>
 					</div> <!-- .menu -->
 				</li>

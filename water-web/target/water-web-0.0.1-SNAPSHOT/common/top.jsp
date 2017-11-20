@@ -5,7 +5,7 @@
 	<div id="header">
 		
 		<div class="content_pad">
-			<h1><a href="workspace">湖南省自来水公司营销管理信息系统</a></h1>
+			<h1><a href="page/common/workspace">湖南省自来水公司营销管理信息系统</a></h1>
 			
 			<ul id="nav">
 				
@@ -135,7 +135,7 @@
 						<ul>
 							<li><a href="page/common/workspace">我的工作台</a></li>
 							<li><a href="page/sys/sys_pwd">修改密码</a></li>
-							<li><a href="page/common/login">退出系统</a></li>
+							<li><a href="login">退出系统</a></li>
 						</ul>
 					</div> <!-- .menu -->
 				</li>
@@ -143,3 +143,9 @@
 		</div> <!-- .content_pad -->
 		
 	</div> <!-- #header -->	
+	<div id="masthead">
+		<div>
+			<span><a id="pagetitle" href="javascript:;">我的工作台</a></span>
+			<span id="welcome_span">欢迎回来，${empLoginSuccess.empName }</span>
+		</div>
+	</div> <!-- #masthead -->	

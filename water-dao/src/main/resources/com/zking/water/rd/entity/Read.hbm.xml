@@ -49,14 +49,12 @@
 		</many-to-one>
 
 		<!-- 一条抄表信息拥有多条水费单记录 -->
-		<set name="bills" cascade="save-update" inverse="true" order-by="createDate desc"
-			fetch="join">
+		<set name="bills" cascade="save-update" inverse="true" order-by="createDate desc">
 			<key column="ReadID" />
 			<one-to-many class="com.zking.water.py.entity.Bill" />
 		</set>
 
-		<many-to-one name="readEmp" class="com.zking.water.sy.entity.Emp"
-			fetch="join">
+		<many-to-one name="readEmp" class="com.zking.water.sy.entity.Emp">
 			<column name="ReadEmpID"></column>
 		</many-to-one>
 		<many-to-one name="auditEmp" class="com.zking.water.sy.entity.Emp"

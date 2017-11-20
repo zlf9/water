@@ -21,6 +21,10 @@ public class OrderLite extends BaseEntity {
 	private User user;// 对应用户
 	private Emp emp;// 操作人
 
+	// 模糊查询属性
+	private java.sql.Timestamp leftDatee;// 左边的操作时间
+	private java.sql.Timestamp rightDatee;// 右边的操作时间
+
 	public OrderLite() {
 	}
 
@@ -80,6 +84,22 @@ public class OrderLite extends BaseEntity {
 
 	public void setEmp(Emp emp) {
 		this.emp = emp;
+	}
+
+	public java.sql.Timestamp getLeftDatee() {
+		return leftDatee;
+	}
+
+	public void setLeftDatee(java.sql.Timestamp leftDatee) {
+		this.leftDatee = leftDatee;
+	}
+
+	public java.sql.Timestamp getRightDatee() {
+		return rightDatee;
+	}
+
+	public void setRightDatee(java.sql.Timestamp rightDatee) {
+		this.rightDatee = rightDatee;
 	}
 
 }

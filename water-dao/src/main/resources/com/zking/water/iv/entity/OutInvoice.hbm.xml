@@ -21,16 +21,13 @@
 			<column name="OutDate" />
 		</property>
 
-		<many-to-one name="emp" class="com.zking.water.sy.entity.Emp"
-			fetch="join">
+		<many-to-one name="emp" class="com.zking.water.sy.entity.Emp">
 			<column name="EmpID"></column>
 		</many-to-one>
-		<many-to-one name="inInvoice" class="com.zking.water.iv.entity.InInvoice"
-			fetch="join">
+		<many-to-one name="inInvoice" class="com.zking.water.iv.entity.InInvoice">
 			<column name="InID"></column>
 		</many-to-one>
-		<many-to-one name="outEmp" class="com.zking.water.sy.entity.Emp"
-			fetch="join">
+		<many-to-one name="outEmp" class="com.zking.water.sy.entity.Emp">
 			<column name="OutEmpID"></column>
 		</many-to-one>
 	</class>

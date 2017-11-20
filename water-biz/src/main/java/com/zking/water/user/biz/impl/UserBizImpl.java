@@ -23,6 +23,7 @@ public class UserBizImpl extends BaseBizImpl<User> implements IUserBiz {
 		this.userDAO = userDAO;
 	}
 
+	@Override
 	public List<User> findFreetext(User user, PageBean pageBean) throws Exception {
 		return userDAO.findFreetext(user, pageBean);
 	}

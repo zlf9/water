@@ -32,8 +32,7 @@
 		</property>
 
 		<!-- 一个表册拥有多个用户 -->
-		<set name="users" cascade="save-update" inverse="true" order-by="createDate desc"
-			fetch="join">
+		<set name="users" cascade="save-update" inverse="true" order-by="createDate desc">
 			<key column="userNo" />
 			<one-to-many class="com.zking.water.user.entity.User" />
 		</set>

@@ -16,8 +16,8 @@ public class BaseTestCase implements Serializable {
 	}
 
 	static {
-		applicationContext = new ClassPathXmlApplicationContext("spring/applicationContext-base.xml",
-				"spring/applicationContext-dao.xml", "spring/applicationContext-biz.xml");
+//		applicationContext = new ClassPathXmlApplicationContext("spring/applicationContext-base.xml",
+//				"spring/applicationContext-dao.xml", "spring/applicationContext-biz.xml");
 	}
 
 	public Object getBean(String name) {

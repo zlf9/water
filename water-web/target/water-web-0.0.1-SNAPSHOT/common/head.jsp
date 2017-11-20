@@ -60,6 +60,7 @@ table.data thead th {
 <script src="js/jquery/jquery.tablesorter.min.js"></script>
 <script src="js/jquery/jquery.uniform.min.js"></script>
 <script src="js/jquery/jquery.placeholder.min.js"></script>
+<script src="My97DatePicker/WdatePicker.js"></script>
 
 <script src="js/widgets.js"></script>
 <script src="js/dashboard.js"></script>
@@ -70,15 +71,7 @@ table.data thead th {
 
 		//选择项初始化
 		$('.tab_container').tabs();
+		
+		$("#pagetitle").text($(".x12 h2").text());
 	});
-
-	function setTibi() {
-		showWindow({
-			url : 'page/sys/sys_setTibi',
-			width : 600,
-			height : 500
-		});
-	}
-
-	
 </script>

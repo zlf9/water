@@ -4,23 +4,36 @@
 	"http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 	<package name="user" extends="base" namespace="/user">
-		<global-results>
-			<result name="success">/page/common/success</result>
-			<result name="error">/page/common/error</result>
-		</global-results>
-		
+		<!-- 拦截器 -->
+		<interceptors>
+			<interceptor name="generatingOperationRecordsInterceptor"
+				class="com.zking.water.interceptor.GeneratingOperationRecordsInterceptor">
+				<!-- 过滤方法 拦截器只对其中的方法起作用 -->
+				<param name="includeMethods">save,doChangeName,doChangeBank,doChangeMeter,doChangeFormula,doCloseAccount</param>
+			</interceptor>
+			<interceptor-stack name="userStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="empLoginInterceptor" />
+				<interceptor-ref name="generatingOperationRecordsInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="userStack" />
+
 		<!-- 由Spring负责创建action实体 -->
-        <!-- struts配置中的class直接写spring中的bean id，这种方式创建的Action可以使用aop进行管理 -->
+		<!-- struts配置中的class直接写spring中的bean id，这种方式创建的Action可以使用aop进行管理 -->
 		<action name="userAction" class="userAction">
-			<result name="success">/index</result>
-			<result name="NoMultiple">/page/user/user_search</result>
 			<result name="Multiple">/page/sys/sys_selectUser</result>
+			<result name="user_search">/page/user/user_search</result>
+			<result name="user_changeName">/page/user/user_changeName</result>
+			<result name="user_changeBank">/page/user/user_changeBank</result>
+			<result name="user_changeMeter">/page/user/user_changeMeter</result>
+			<result name="user_changeFormula">/page/user/user_changeFormula</result>
+			<result name="user_delete">/page/user/user_delete</result>
+			<result name="user_docNum">/page/user/user_docNum</result>
 		</action>
-		<action name="readAction" class="readAction">
-			<result name="getById">/page/user/user_search_readingDetail</result>
-		</action>
-		<action name="billAction" class="billAction">
-			<result name="getById">/page/user/user_search_billDetail</result>
+
+		<action name="orderLiteAction" class="orderLiteAction">
+			<result name="user_reportShortcut">/page/user/user_reportShortcut</result>
 		</action>
 	</package>
 </struts>

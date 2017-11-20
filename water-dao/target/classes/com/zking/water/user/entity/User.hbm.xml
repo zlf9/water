@@ -89,29 +89,26 @@
 
 		<!-- 一个用户只能有一个水表 property-ref后的user为Meter中定义的user属性 -->
 		<one-to-one name="meter" class="com.zking.water.user.entity.Meter"
-			cascade="save-update" property-ref="user" fetch="join" />
+			cascade="save-update" property-ref="user" />
 
 		<!-- 一个用户只属于一个表册 多个用户可以属于同一个表册 -->
-		<many-to-one name="volume" class="com.zking.water.rd.entity.Volume"
-			fetch="join">
+		<many-to-one name="volume" class="com.zking.water.rd.entity.Volume">
 			<column name="VolumeID"></column>
 		</many-to-one>
 
 		<!-- 一个用户拥有多个提比提量 -->
 		<set name="formulas" cascade="save-update" inverse="true"
-			order-by="id" fetch="join">
+			order-by="id">
 			<key column="UserNo" />
 			<one-to-many class="com.zking.water.user.entity.Formula" />
 		</set>
 		<!-- 一个用户拥有多条抄表信息 -->
-		<set name="reads" cascade="save-update" inverse="true" order-by="readDate desc"
-			fetch="join">
+		<set name="reads" cascade="save-update" inverse="true" order-by="readDate desc">
 			<key column="UserNo" />
 			<one-to-many class="com.zking.water.rd.entity.Read" />
 		</set>
 		<!-- 一个用户拥有多条收费单记录 -->
-		<set name="pays" cascade="save-update" inverse="true" order-by="payDate desc"
-			fetch="join">
+		<set name="pays" cascade="save-update" inverse="true" order-by="payDate desc">
 			<key column="UserNo" />
 			<one-to-many class="com.zking.water.py.entity.Pay" />
 		</set>
