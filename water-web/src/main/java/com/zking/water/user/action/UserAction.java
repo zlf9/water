@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.zking.water.base.action.BaseAction;
+import com.zking.water.base.entity.PageBean;
 import com.zking.water.user.biz.IMeterBiz;
 import com.zking.water.user.biz.IUserBiz;
 import com.zking.water.user.entity.User;
@@ -57,16 +58,17 @@ public class UserAction extends BaseAction<User> {
 	public String findFreetext() throws Exception {
 		session.setAttribute("user", model);// 查询条件
 		request.setAttribute("forward", forward);// 跳转页面
-
-		List<User> users = userBiz.findFreetext(model, handlerPageBean());// 模糊查询返回用户对象集合
+		PageBean pageBean = handlerPageBean();
+		List<User> users = userBiz.findFreetext(model, pageBean);// 模糊查询返回用户对象集合
 		/*
 		 * if (null != users) { switch (users.size()) { case 0: result = null; break;
 		 * case 1: result = users.get(0); break; default: result = users; break; } }
 		 */
 
-		result = null == users || users.size() < 1 ? null : users.size() == 1 ? users.get(0) : users;// 如果没有查询到则为NULL,查询到只有一个则为用户对象,查询到多个则为用户对象集合
+		result = null == users || pageBean.getTotalRecord() < 1 ? null
+				: pageBean.getTotalRecord() == 1 ? users.get(0) : users;// 如果没有查询到则为NULL,查询到只有一个则为用户对象,查询到多个则为用户对象集合
 
-		return null == users || users.size() <= 1 ? forward : "Multiple";
+		return null == users || pageBean.getTotalRecord() <= 1 ? forward : "Multiple";
 	}
 
 	/**
