@@ -6,7 +6,7 @@
 <%@ include file="/common/head.jsp"%>
 
 <script type="text/javascript">
-	$(function() {
+	$(document).ready(function() { 
 		var oweMoney = $("#oweMoney").val().trim();
 		if (oweMoney != '0.00 元') {
 			//alert("注：此户水费尚未清算，不能销户。");

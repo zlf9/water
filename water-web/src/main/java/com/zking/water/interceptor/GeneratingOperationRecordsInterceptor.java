@@ -81,7 +81,10 @@ public class GeneratingOperationRecordsInterceptor extends MethodFilterIntercept
 			case "doChangeBank":// 如果为doChangeBank
 				orderLite = new OrderLite();
 				orderLite.setOrderType(4);// 设置工单类型（1新户 2分户 3过户 4代扣 5换表 6重签 7销户）
-				orderLite.setDescription("更改为" + dictBiz.findByDictNameAndValue(new Dict("收款方式", user.getPayType())));// 设置说明
+				Dict dict = dictBiz.findByDictNameAndValue(new Dict("收款方式", user.getPayType()));
+				orderLite.setDescription("更改为" + dict.getText()
+						+ (dict.getText().equals("银行代扣") ? "，开户行：" + user.getBankName() + "，账号：" + user.getBankNum()
+								: ""));// 设置说明
 				break;
 			case "doChangeMeter":// 如果为doChangeMeter
 				orderLite = new OrderLite();

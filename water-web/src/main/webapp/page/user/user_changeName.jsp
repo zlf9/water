@@ -20,7 +20,7 @@
 			var address = $("#address").val().trim();
 			
 			if(oldUserName == userName&&oldPhone == phone&&oldSMSPhone == smsphone&&oldAddress == address){
-				alert("新信息和原信息相同");
+				$("#message").html("新信息和原信息相同");
 				return false;
 			}
 			
@@ -76,6 +76,7 @@
 					<div class="field"><label for="address">新联系地址</label> <input id="address" name="address" size="50" type="text" class="medium" value="" /></div>
 					
 	
+					<div id="message" style="padding-left: 145px; color: red; display: block;"></div>
 					<div class="buttonrow">
 						<button class="btn" type="submit">过户</button>
 					</div>
@@ -86,6 +87,7 @@
 	</div> <!-- #content -->
 	
 	<%@ include file="/common/bottom.jsp"%>	
+	
 	<c:remove var="user" scope="session"/>
 </div> <!-- #wrapper -->
 

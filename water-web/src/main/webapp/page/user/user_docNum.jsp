@@ -11,7 +11,7 @@
 			var oldDocNum = $("#oldDocNum").val().trim();
 			var docNum = $("#docNum").val().trim();
 			if(oldDocNum == docNum){
-				alert("新档案编号和原档案编号相同");
+				$("#message").html("新档案编号和原档案编号相同");
 				return false;
 			}
 			return ""!=userNo&&""!=docNum&&""!=docNum;
@@ -58,6 +58,7 @@
 																		  <input id="userNo" name="userNo" size="50" type="hidden" class="medium" value="<s:property value="result.userNo"/>" />
 					<div class="field"><label for="docNum">档案号</label> <input id="docNum" name="docNum" size="50" type="text" class="medium" value="<s:property value="result.docNum"/>" /></div>
 	
+					<div id="message" style="padding-left: 145px; color: red; display: block;"></div>
 					<div class="buttonrow">
 						<button class="btn" type="submit">保存</button>
 					</div>

@@ -201,14 +201,15 @@
 											<td><input readonly="readonly" value="<s:property value='result.meter.meterNo'/>" /></td>
 											<td>表身码</td>
 											<td><input readonly="readonly" value="<s:property value='result.meter.meterName'/>" /></td>
-											<td>起始底码</td>
-											<td><input readonly="readonly" value="<s:property value='result.meter.meterType.minValue'/>" /></td>
-										</tr>
-										<tr>
 											<td>水表类型</td>
 											<td><input readonly="readonly" value="<s:property value='result.meter.meterType.meterTypeName'/>" /></td>
+											
+										</tr>
+										<tr>
 											<td>水表口径</td>
 											<td><input readonly="readonly" value="<s:property value='result.meter.meterType.aperture'/>" /></td>
+											<td>起始底码</td>
+											<td><input readonly="readonly" value="<s:property value='result.meter.meterType.minValue'/>" /></td>
 											<td>最大码值</td>
 											<td><input readonly="readonly" value="<s:property value='result.meter.meterType.mavValue'/>" /></td>
 										</tr>

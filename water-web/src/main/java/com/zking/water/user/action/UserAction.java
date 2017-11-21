@@ -128,6 +128,28 @@ public class UserAction extends BaseAction<User> {
 	}
 
 	/**
+	 * 代扣
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String doChangeBank() {
+		String changeBankResult = "";
+		try {
+			if (StringUtils.isNotBlank(model.getUserNo())) {// 如果用户编号不为空
+				userBiz.doChangeBank(model);// 代扣
+				changeBankResult = SUCCESS;// 代扣成功
+			} else {
+				changeBankResult = ERROR;// 代扣失败
+			}
+		} catch (Exception e) {
+			changeBankResult = ERROR;// 代扣失败
+			// throw new RuntimeException("代扣失败", e);
+		}
+		return changeBankResult;
+	}
+
+	/**
 	 * 销户
 	 * 
 	 * @return
