@@ -100,19 +100,40 @@ public class UserAction extends BaseAction<User> {
 	 * @throws Exception
 	 */
 	public String doChangeName() throws Exception {
-		String saveResult = "";
+		String changeNameResult = "";
 		try {
 			if (StringUtils.isNotBlank(model.getUserNo())) {// 如果用户编号不为空
 				userBiz.doChangeName(model);// 过户
-				saveResult = SUCCESS;// 过户成功
+				changeNameResult = SUCCESS;// 过户成功
 			} else {
-				saveResult = ERROR;// 过户失败
+				changeNameResult = ERROR;// 过户失败
 			}
 		} catch (Exception e) {
-			saveResult = ERROR;// 过户失败
+			changeNameResult = ERROR;// 过户失败
 			// throw new RuntimeException("过户失败", e);
 		}
-		return saveResult;
+		return changeNameResult;
 	}
 
+	/**
+	 * 档案号管理
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String doChangeDocNum() throws Exception {
+		String changeDocNumResult = "";
+		try {
+			if (StringUtils.isNotBlank(model.getUserNo())) {// 如果用户编号不为空
+				userBiz.doChangeDocNum(model);// 档案号修改或新增
+				changeDocNumResult = SUCCESS;// 档案号修改或新增成功
+			} else {
+				changeDocNumResult = ERROR;// 档案号修改或新增失败
+			}
+		} catch (Exception e) {
+			changeDocNumResult = ERROR;// 档案号修改或新增失败
+			// throw new RuntimeException("档案号修改或新增失败", e);
+		}
+		return changeDocNumResult;
+	}
 }

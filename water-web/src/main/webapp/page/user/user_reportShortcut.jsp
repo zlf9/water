@@ -37,37 +37,41 @@
 			<div class="reportTitle">
 				快捷操作记录
 			</div>	
-			<div class="height24">
-				<div style="float:left;width:200px;">共 ${pageBean.totalRecord } 次快捷操作</div>
-			</div>
-			<table class="data display">
-				<thead>
-					<tr>
-						<th width="128">操作时间</th>
-						<th width="60">操作员</th>
-						<th width="40">类型</th>
-						<th width="60">用户编码</th>
-						<th width="100">用户姓名</th>
-						<th>备注</th>
-					</tr>
-				</thead>
-				<tbody>
-					<s:if test="result != null">
-						<s:iterator var="orderLite" value="result" status="st">
-							<tr class="<s:if test='#st.odd == true'>odd</s:if><s:elseif test='#st.even == true'>even</s:elseif>">
-								<td class="center"><s:date name="#orderLite.datee" format="yyyy-MM-dd HH:mm:ss"/></td>
-								<td class="center"><s:property value="#orderLite.emp.empName"/></td>
-								<td class="center"><s:property value="#empAction.findByDictNameAndValue('工单类型',#orderLite.orderType)"/></td>
-								<td class="center"><s:property value="#orderLite.user.userNo"/></td>
-								<td class="center"><s:property value="#orderLite.user.userName"/></td>
-								<td><s:property value="#orderLite.description"/></td>
-							</tr>
-						</s:iterator>
-					</s:if>
-				</tbody>
+			<s:if test="result == null">
+					<div class="center"><h4>请先查询</h4></div>
+			</s:if>
+			<s:else>
+				<div class="height24">
+					<div style="float:left;width:200px;">共 ${pageBean.totalRecord } 次快捷操作</div>
+				</div>
+				<table class="data display">
+					<thead>
+						<tr>
+							<th width="128">操作时间</th>
+							<th width="60">操作员</th>
+							<th width="40">类型</th>
+							<th width="60">用户编码</th>
+							<th width="100">用户姓名</th>
+							<th>备注</th>
+						</tr>
+					</thead>
+					<tbody>
+						<s:if test="result != null">
+							<s:iterator var="orderLite" value="result" status="st">
+								<tr class="<s:if test='#st.odd == true'>odd</s:if><s:elseif test='#st.even == true'>even</s:elseif>">
+									<td class="center"><s:date name="#orderLite.datee" format="yyyy-MM-dd HH:mm:ss"/></td>
+									<td class="center"><s:property value="#orderLite.emp.empName"/></td>
+									<td class="center"><s:property value="#empAction.findByDictNameAndValue('工单类型',#orderLite.orderType)"/></td>
+									<td class="center"><s:property value="#orderLite.user.userNo"/></td>
+									<td class="center"><s:property value="#orderLite.user.userName"/></td>
+									<td><s:property value="#orderLite.description"/></td>
+								</tr>
+							</s:iterator>
+						</s:if>
+					</tbody>
 				</table>
 				<z:page pageBean="${pageBean }" />
-				
+			</s:else>
 		</div> <!-- .x12 -->
 		
 	</div> <!-- #content -->

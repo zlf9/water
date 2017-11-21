@@ -6,13 +6,13 @@
             <column name="dict_id"/>
             <generator class="native"/>
         </id>
-        <property generated="never" lazy="false" name="dictName" optimistic-lock="true" type="java.lang.String" unique="false">
+        <property generated="never" lazy="false" name="dictName" optimistic-lock="true" type="java.lang.String" unique="false" unique-key="dict_permission_unique_key">
             <column length="50" name="dict_name" not-null="true"/>
         </property>
         <property generated="never" lazy="false" name="text" optimistic-lock="true" type="java.lang.String" unique="false">
             <column length="50" name="text" not-null="true"/>
         </property>
-        <property generated="never" lazy="false" name="value" optimistic-lock="true" type="java.lang.Integer" unique="false">
+        <property generated="never" lazy="false" name="value" optimistic-lock="true" type="java.lang.Integer" unique="false" unique-key="dict_permission_unique_key">
             <column name="value" not-null="true"/>
         </property>
         <property generated="never" lazy="false" name="position" optimistic-lock="true" type="java.lang.Integer" unique="false">

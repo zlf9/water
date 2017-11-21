@@ -8,10 +8,22 @@
 	<script type="text/javascript">
 		function doChangeName(){
 			var userNo = $("#userNo").val().trim();
+			
+			var oldUserName = $("#oldUserName").val().trim();
+			var oldPhone = $("#oldPhone").val().trim();
+			var oldSMSPhone = $("#oldSMSPhone").val().trim();
+			var oldAddress = $("#oldAddress").val().trim();
+			
 			var userName = $("#userName").val().trim();
 			var phone = $("#phone").val().trim();
 			var smsphone = $("#smsphone").val().trim();
 			var address = $("#address").val().trim();
+			
+			if(oldUserName == userName&&oldPhone == phone&&oldSMSPhone == smsphone&&oldAddress == address){
+				alert("新信息和原信息相同");
+				return false;
+			}
+			
 			return ""!=userNo&&""!=userName&&""!=phone&&""!=smsphone&&""!=address;
 		}
 	</script>
