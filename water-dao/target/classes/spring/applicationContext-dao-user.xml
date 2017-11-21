@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="                                               
+            http://www.springframework.org/schema/beans    
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 用户管理 user -->
+	<bean id="userDAO" class="com.zking.water.user.dao.impl.UserDAOImpl"
+		parent="baseDAO">
+	</bean>
+	<bean id="meterDAO" class="com.zking.water.user.dao.impl.MeterDAOImpl"
+		parent="baseDAO">
+	</bean>
+	<bean id="orderLiteDAO" class="com.zking.water.user.dao.impl.OrderLiteDAOImpl"
+		parent="baseDAO">
+	</bean>
+</beans>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="base" extends="struts-default" abstract="true">
+		<!-- 拦截器 -->
+		<interceptors>
+			<interceptor name="empLoginInterceptor"
+				class="com.zking.water.interceptor.EmpLoginInterceptor">
+				<!-- 过滤方法 拦截器对其中的方法不起作用 -->
+				<param name="excludeMethods">doLogin</param>
+			</interceptor>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="empLoginInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack" />
+
+		<!-- 定义全局Result -->
+		<global-results>
+			<result name="login" type="redirect">/login</result>
+			<result name="success" type="redirect">/page/common/success</result>
+			<result name="error" type="redirect">/page/common/error</result>
+		</global-results>
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+	</package>
+
+	<package name="dict" extends="base" namespace="/dict">
+		<action name="dictAction" class="dictAction"></action>
+	</package>
+</struts>

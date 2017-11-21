@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property"
+	default-cascade="none" default-lazy="true">
+	<class catalog="water02" dynamic-insert="false"
+		dynamic-update="false" mutable="true" name="com.zking.water.user.entity.OrderLite"
+		optimistic-lock="version" polymorphism="implicit"
+		select-before-update="false" table="t_be_orderlite">
+		<id name="id" type="java.lang.Integer">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property generated="never" lazy="false" name="orderType"
+			optimistic-lock="true" type="java.lang.Integer" unique="false">
+			<column name="OrderType" not-null="true" />
+		</property>
+		<property generated="insert" lazy="false" name="datee"
+			optimistic-lock="true" type="java.sql.Timestamp" unique="false">
+			<column name="Datee" />
+		</property>
+		<property generated="never" lazy="false" name="description"
+			optimistic-lock="true" type="java.lang.String" unique="false">
+			<column length="1000" name="Description" />
+		</property>
+
+		<many-to-one name="user" class="com.zking.water.user.entity.User" fetch="join">
+			<column name="UserNo"></column>
+		</many-to-one>
+		<many-to-one name="emp" class="com.zking.water.sy.entity.Emp" fetch="join">
+			<column name="EmpID"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

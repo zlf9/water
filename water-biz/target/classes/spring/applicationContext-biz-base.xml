@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="                                               
+            http://www.springframework.org/schema/beans    
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 公共 base -->
+	<bean id="baseBiz" class="com.zking.water.base.biz.impl.BaseBizImpl"
+		abstract="true">
+	</bean>
+	<bean id="dictBiz" class="com.zking.water.base.biz.impl.DictBizImpl"
+		parent="baseBiz">
+		<property name="dictDAO" ref="dictDAO"></property>
+	</bean>
+</beans>

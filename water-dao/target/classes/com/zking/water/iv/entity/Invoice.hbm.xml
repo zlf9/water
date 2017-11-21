@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.zking.water.iv.entity.Invoice" table="t_iv_invoice"
+		catalog="water02">
+		<id name="invoiceNo" type="java.lang.String">
+			<column name="InvoiceNo" length="10" />
+			<generator class="assigned" />
+		</id>
+		<property name="invoiceType" type="java.lang.Integer">
+			<column name="InvoiceType" not-null="true" />
+		</property>
+		<property name="used" type="java.lang.Boolean">
+			<column name="Used" not-null="true" />
+		</property>
+		<property name="useDate" type="java.sql.Timestamp">
+			<column name="UseDate" />
+		</property>
+		<property name="invalid" type="java.lang.Boolean">
+			<column name="Invalid" not-null="true" />
+		</property>
+		<property name="invalidDate" type="java.sql.Timestamp">
+			<column name="InvalidDate" />
+		</property>
+		<property name="archived" type="java.lang.Boolean">
+			<column name="Archived" not-null="true" />
+		</property>
+		<property name="archiveDate" type="java.sql.Timestamp">
+			<column name="ArchiveDate" />
+		</property>
+
+		<many-to-one name="emp" class="com.zking.water.sy.entity.Emp">
+			<column name="EmpID"></column>
+		</many-to-one>
+		<many-to-one name="inInvoice" class="com.zking.water.iv.entity.InInvoice">
+			<column name="InID"></column>
+		</many-to-one>
+		<many-to-one name="outInvoice" class="com.zking.water.iv.entity.OutInvoice">
+			<column name="OutID"></column>
+		</many-to-one>
+		<many-to-one name="archive" class="com.zking.water.iv.entity.Archive">
+			<column name="ArchiveID"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

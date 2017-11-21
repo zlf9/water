@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+	<class catalog="water02" name="com.zking.water.py.entity.Bill"
+		table="t_py_bill">
+		<id name="billNo" type="java.lang.String">
+			<column length="20" name="BillNo" />
+			<generator class="assigned" />
+		</id>
+		<property generated="never" lazy="false" name="createDate"
+			type="java.sql.Timestamp">
+			<column name="CreateDate" />
+		</property>
+		<property generated="never" lazy="false" name="billMoney"
+			type="java.lang.Double">
+			<column name="BillMoney" not-null="true" precision="18" />
+		</property>
+		<property generated="never" lazy="false" name="realMoney"
+			type="java.lang.Double">
+			<column name="RealMoney" not-null="true" precision="18" />
+		</property>
+		<property generated="never" lazy="false" name="balance"
+			type="java.lang.Boolean">
+			<column name="Balance" not-null="true" />
+		</property>
+		<property generated="insert" lazy="false" name="balanceDate"
+			type="java.sql.Timestamp">
+			<column name="BalanceDate" />
+		</property>
+
+		<!-- 一条水费单记录只属于一条抄表信息 多条水费单记录可以属于同一个用户 -->
+		<many-to-one class="com.zking.water.rd.entity.Read" name="read"
+			fetch="join">
+			<column name="ReadID" />
+		</many-to-one>
+
+		<!-- 一条水费单记录拥有多条水费单详情记录 -->
+		<set cascade="save-update" inverse="true" name="billDetails"
+			order-by="ID" sort="unsorted">
+			<key column="BillNo" />
+			<one-to-many class="com.zking.water.py.entity.BillDetail" />
+		</set>
+	</class>
+</hibernate-mapping>

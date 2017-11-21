@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="                                               
+            http://www.springframework.org/schema/beans    
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 收费管理 py -->
+	<bean id="billBiz" class="com.zking.water.py.biz.impl.BillBizImpl"
+		parent="baseBiz">
+		<property name="billDAO" ref="billDAO"></property>
+	</bean>
+</beans>
