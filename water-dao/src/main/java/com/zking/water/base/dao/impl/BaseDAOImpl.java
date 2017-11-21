@@ -43,7 +43,7 @@ public abstract class BaseDAOImpl<T> implements IBaseDAO<T> {
 
 	// 增
 	@Override
-	public Serializable save(T t) throws Exception {
+	public Serializable save(T t) {
 		try {
 			return hibernateTemplate.save(t);
 		} catch (Exception e) {
@@ -52,7 +52,7 @@ public abstract class BaseDAOImpl<T> implements IBaseDAO<T> {
 	}
 
 	@Override
-	public void delete(T t) throws Exception {
+	public void delete(T t) {
 		try {
 			hibernateTemplate.delete(t);
 		} catch (Exception e) {
@@ -61,7 +61,7 @@ public abstract class BaseDAOImpl<T> implements IBaseDAO<T> {
 	}
 
 	@Override
-	public void delete(Serializable id) throws Exception {
+	public void delete(Serializable id) {
 		try {
 			T t = this.getById(id);// 先取,再删
 			hibernateTemplate.delete(t);
@@ -71,7 +71,7 @@ public abstract class BaseDAOImpl<T> implements IBaseDAO<T> {
 	}
 
 	@Override
-	public void update(T t) throws Exception {
+	public void update(T t) {
 		try {
 			hibernateTemplate.update(t);
 		} catch (Exception e) {
@@ -81,7 +81,7 @@ public abstract class BaseDAOImpl<T> implements IBaseDAO<T> {
 
 	// 查 根据id查询
 	@Override
-	public T getById(Serializable id) throws Exception {
+	public T getById(Serializable id) {
 		try {
 			return (T) hibernateTemplate.get(clazz, id);
 		} catch (Exception e) {
@@ -91,7 +91,7 @@ public abstract class BaseDAOImpl<T> implements IBaseDAO<T> {
 
 	// 查询全部
 	@Override
-	public List<T> findAll() throws Exception {
+	public List<T> findAll() {
 		try {
 			return (List<T>) hibernateTemplate.find("from " + clazz.getSimpleName());
 		} catch (Exception e) {
@@ -101,7 +101,7 @@ public abstract class BaseDAOImpl<T> implements IBaseDAO<T> {
 
 	// 查 符合条件的总记录数
 	@Override
-	public Integer getTotalCount(DetachedCriteria dc) throws Exception {
+	public Integer getTotalCount(DetachedCriteria dc) {
 		try {
 			// 设置查询的聚合函数,总记录数
 			dc.setProjection(Projections.rowCount());
@@ -124,7 +124,7 @@ public abstract class BaseDAOImpl<T> implements IBaseDAO<T> {
 
 	// 查 查询分页列表数据
 	@Override
-	public List<T> getPageList(DetachedCriteria dc, Integer start, Integer pageSize) throws Exception {
+	public List<T> getPageList(DetachedCriteria dc, Integer start, Integer pageSize) {
 		try {
 			return (List<T>) hibernateTemplate.findByCriteria(dc, start, pageSize);
 		} catch (Exception e) {

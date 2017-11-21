@@ -16,5 +16,5 @@ public interface IMeterBiz extends IBaseBiz<Meter> {
 	/**
 	 * 新增水表
 	 */
-	public Serializable save(Meter meter) throws Exception;
+	public Serializable save(Meter meter);
 }

@@ -69,6 +69,7 @@
 	
 	<%@ include file="/common/bottom.jsp"%>	
 	
+	<c:remove var="user" scope="session"/>
 </div> <!-- #wrapper -->
 
 </body> 

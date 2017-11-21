@@ -19,16 +19,25 @@ public class DictAction extends BaseAction<Dict> {
 	/**
 	 * 根据字典名字得到字典对象集合
 	 */
-	public String findAllByDictName() throws Exception {
-		result = StringUtils.isNotBlank(model.getDictName()) ? dictBiz.findAllByDictName(model.getDictName()) : null;
-		return NONE;
+	public String findAllByDictName() {
+		try {
+			result = StringUtils.isNotBlank(model.getDictName()) ? dictBiz.findAllByDictName(model.getDictName())
+					: null;
+			return NONE;
+		} catch (Exception e) {
+			throw new RuntimeException("根据字典名字得到字典对象集合失败", e);
+		}
 	}
 
 	/**
 	 * 根据字典名字和字典值得到字典文本
 	 */
-	public String findByDictNameAndValue() throws Exception {
-		result = dictBiz.findByDictNameAndValue(model).getText();
-		return NONE;
+	public String findByDictNameAndValue() {
+		try {
+			result = dictBiz.findByDictNameAndValue(model).getText();
+			return NONE;
+		} catch (Exception e) {
+			throw new RuntimeException("根据字典名字和字典值得到字典文本失败", e);
+		}
 	}
 }

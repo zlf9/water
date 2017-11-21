@@ -26,7 +26,7 @@ public class EmpDAOImpl extends BaseDAOImpl<Emp> implements IEmpDAO {
 	 * @return 验证通过返回完整信息 否则返回NULL
 	 */
 	@Override
-	public Emp doLogin(final Emp emp) throws Exception {
+	public Emp doLogin(final Emp emp) {
 		try {
 			return hibernateTemplate.execute(new HibernateCallback<Emp>() {
 

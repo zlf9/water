@@ -33,10 +33,14 @@ public class UserAction extends BaseAction<User> {
 	 * @return
 	 * @throws Exception
 	 */
-	public String findAllUser() throws Exception {
-		List<User> users = userBiz.findAll();// 查询全部返回所有用户的对象集合
-		result = users == null || users.size() < 1 ? null : users;// 如果没有查到则为NULL，有则为所有用户的对象集合
-		return SUCCESS;
+	public String findAllUser() {
+		try {
+			List<User> users = userBiz.findAll();// 查询全部返回所有用户的对象集合
+			result = users == null || users.size() < 1 ? null : users;// 如果没有查到则为NULL，有则为所有用户的对象集合
+			return SUCCESS;
+		} catch (Exception e) {
+			throw new RuntimeException("查询全部用户失败", e);
+		}
 	}
 
 	/**
@@ -45,9 +49,13 @@ public class UserAction extends BaseAction<User> {
 	 * @return
 	 * @throws Exception
 	 */
-	public String findByUserNo() throws Exception {
-		result = StringUtils.isNotBlank(model.getUserNo()) ? userBiz.getById(model.getUserNo()) : null;// 如果用户编号不为空则根据用户编号查询用户对象，否则直接为NULL
-		return forward;
+	public String findByUserNo() {
+		try {
+			result = StringUtils.isNotBlank(model.getUserNo()) ? userBiz.getById(model.getUserNo()) : null;// 如果用户编号不为空则根据用户编号查询用户对象，否则直接为NULL
+			return forward;
+		} catch (Exception e) {
+			throw new RuntimeException("根据用户编号查询用户对象失败", e);
+		}
 	}
 
 	/**
@@ -55,21 +63,25 @@ public class UserAction extends BaseAction<User> {
 	 * 
 	 * @return
 	 */
-	public String findFreetext() throws Exception {
-		session.setAttribute("user", model);// 查询条件
-		request.setAttribute("forward", forward);// 跳转页面
-		PageBean pageBean = handlerPageBean();
-		List<User> users = userBiz.findFreetext(model, pageBean);// 模糊查询返回用户对象集合
-		/*
-		 * if (null != users) { switch (pageBean.getTotalRecord()) { case 0: result =
-		 * null; break; case 1: result = users.get(0); break; default: result = users;
-		 * break; } }
-		 */
+	public String findFreetext() {
+		try {
+			session.setAttribute("user", model);// 查询条件
+			request.setAttribute("forward", forward);// 跳转页面
+			PageBean pageBean = handlerPageBean();
+			List<User> users = userBiz.findFreetext(model, pageBean);// 模糊查询返回用户对象集合
+			/*
+			 * if (null != users) { switch (pageBean.getTotalRecord()) { case 0: result =
+			 * null; break; case 1: result = users.get(0); break; default: result = users;
+			 * break; } }
+			 */
 
-		result = null == users || pageBean.getTotalRecord() < 1 ? null
-				: pageBean.getTotalRecord() == 1 ? users.get(0) : users;// 如果没有查询到则为NULL,查询到只有一个则为用户对象,查询到多个则为用户对象集合
+			result = null == users || pageBean.getTotalRecord() < 1 ? null
+					: pageBean.getTotalRecord() == 1 ? users.get(0) : users;// 如果没有查询到则为NULL,查询到只有一个则为用户对象,查询到多个则为用户对象集合
 
-		return null == users || pageBean.getTotalRecord() <= 1 ? forward : "Multiple";
+			return null == users || pageBean.getTotalRecord() <= 1 ? forward : "Multiple";
+		} catch (Exception e) {
+			throw new RuntimeException("模糊查询失败", e);
+		}
 	}
 
 	/**
@@ -78,7 +90,7 @@ public class UserAction extends BaseAction<User> {
 	 * @return
 	 * @throws Exception
 	 */
-	public String saveUser() throws Exception {
+	public String saveUser() {
 		String saveResult = "";
 		try {
 			Serializable userNo = userBiz.save(model);// 新户
@@ -99,7 +111,7 @@ public class UserAction extends BaseAction<User> {
 	 * @return
 	 * @throws Exception
 	 */
-	public String doChangeName() throws Exception {
+	public String doChangeName() {
 		String changeNameResult = "";
 		try {
 			if (StringUtils.isNotBlank(model.getUserNo())) {// 如果用户编号不为空
@@ -116,12 +128,35 @@ public class UserAction extends BaseAction<User> {
 	}
 
 	/**
+	 * 销户
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String doCloseAccount() {
+		this.message = request.getParameter("closeAccountRemark");
+		String closeAccountResult = "";
+		try {
+			if (StringUtils.isNotBlank(model.getUserNo())) {// 如果用户编号不为空
+				userBiz.doCloseAccount(model);// 销户
+				closeAccountResult = SUCCESS;// 销户成功
+			} else {
+				closeAccountResult = ERROR;// 销户失败
+			}
+		} catch (Exception e) {
+			closeAccountResult = ERROR;// 销户失败
+			// throw new RuntimeException("销户失败", e);
+		}
+		return closeAccountResult;
+	}
+
+	/**
 	 * 档案号管理
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	public String doChangeDocNum() throws Exception {
+	public String doChangeDocNum() {
 		String changeDocNumResult = "";
 		try {
 			if (StringUtils.isNotBlank(model.getUserNo())) {// 如果用户编号不为空

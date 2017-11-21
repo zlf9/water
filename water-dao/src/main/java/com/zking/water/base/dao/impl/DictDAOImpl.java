@@ -21,7 +21,7 @@ public class DictDAOImpl extends BaseDAOImpl<Dict> implements IDictDAO {
 
 	// 根据字典名字查询字典列表
 	@Override
-	public List<Dict> findAllByDictName(String dictName) throws Exception {
+	public List<Dict> findAllByDictName(String dictName) {
 		try {
 			String hql = "from Dict where dictName = ?";
 			return (List<Dict>) hibernateTemplate.find(hql, dictName);
@@ -31,7 +31,7 @@ public class DictDAOImpl extends BaseDAOImpl<Dict> implements IDictDAO {
 	}
 
 	@Override
-	public Dict findByDictNameAndValue(final Dict dict) throws Exception {
+	public Dict findByDictNameAndValue(final Dict dict) {
 		try {
 			return hibernateTemplate.execute(new HibernateCallback<Dict>() {
 

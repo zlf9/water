@@ -28,7 +28,7 @@ public class EmpBizImpl extends BaseBizImpl<Emp> implements IEmpBiz {
 	 * @return 验证通过返回完整信息 否则返回NULL
 	 */
 	@Override
-	public Emp doLogin(final Emp emp) throws Exception {
+	public Emp doLogin(final Emp emp) {
 		return empDAO.doLogin(emp);
 	}
 

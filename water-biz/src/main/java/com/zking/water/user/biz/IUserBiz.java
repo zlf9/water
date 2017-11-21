@@ -25,7 +25,7 @@ public interface IUserBiz extends IBaseBiz<User> {
 	 * @return 用户对象集合
 	 * @throws Exception
 	 */
-	public List<User> findFreetext(User user, PageBean pageBean) throws Exception;
+	public List<User> findFreetext(User user, PageBean pageBean);
 
 	/**
 	 * 新增用户
@@ -35,7 +35,7 @@ public interface IUserBiz extends IBaseBiz<User> {
 	 * @return 用户编号
 	 * @throws Exception
 	 */
-	public Serializable save(User user) throws Exception;
+	public Serializable save(User user);
 
 	/**
 	 * 过户
@@ -43,7 +43,7 @@ public interface IUserBiz extends IBaseBiz<User> {
 	 * @param user
 	 *            用户信息
 	 */
-	public void doChangeName(User user) throws Exception;
+	public void doChangeName(User user);
 
 	/**
 	 * 代扣
@@ -51,7 +51,7 @@ public interface IUserBiz extends IBaseBiz<User> {
 	 * @param user
 	 *            用户信息
 	 */
-	public void doChangeBank(User user) throws Exception;
+	public void doChangeBank(User user);
 
 	/**
 	 * 换表
@@ -59,7 +59,7 @@ public interface IUserBiz extends IBaseBiz<User> {
 	 * @param user
 	 *            用户信息
 	 */
-	public void doChangeMeter(User user) throws Exception;
+	public void doChangeMeter(User user);
 
 	/**
 	 * 重签
@@ -67,7 +67,7 @@ public interface IUserBiz extends IBaseBiz<User> {
 	 * @param user
 	 *            用户信息
 	 */
-	public void doChangeFormula(User user) throws Exception;
+	public void doChangeFormula(User user);
 
 	/**
 	 * 销户
@@ -75,7 +75,7 @@ public interface IUserBiz extends IBaseBiz<User> {
 	 * @param user
 	 *            用户信息
 	 */
-	public void doCloseAccount(User user) throws Exception;
+	public void doCloseAccount(User user);
 
 	/**
 	 * 档案号管理
@@ -83,6 +83,6 @@ public interface IUserBiz extends IBaseBiz<User> {
 	 * @param user
 	 *            用户信息
 	 */
-	public void doChangeDocNum(User user) throws Exception;
+	public void doChangeDocNum(User user);
 
 }

@@ -21,7 +21,7 @@ public class OrderLiteDAOImpl extends BaseDAOImpl<OrderLite> implements IOrderLi
 	 * 模糊查询 且支持分页
 	 */
 	@Override
-	public List<OrderLite> findFreetext(OrderLite orderLite, PageBean pageBean) throws Exception {
+	public List<OrderLite> findFreetext(OrderLite orderLite, PageBean pageBean) {
 		try {
 			String hql = "from OrderLite where 1=1";
 			Map<String, Object> args = new HashMap<String, Object>();
@@ -42,8 +42,8 @@ public class OrderLiteDAOImpl extends BaseDAOImpl<OrderLite> implements IOrderLi
 				hql += " and datee <= :rightDatee";
 				args.put("rightDatee", orderLite.getRightDatee());
 			}
-			
-			hql+=" order by datee desc";
+
+			hql += " order by datee desc";
 
 			// Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 			// Query<OrderLite> query = session.createQuery(hql);

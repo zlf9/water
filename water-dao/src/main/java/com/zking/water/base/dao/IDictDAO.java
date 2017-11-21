@@ -20,7 +20,7 @@ public interface IDictDAO extends IBaseDAO<Dict> {
 	 * @return 字典对象集合
 	 * @throws Exception
 	 */
-	public List<Dict> findAllByDictName(String dictName) throws Exception;
+	public List<Dict> findAllByDictName(String dictName);
 
 	/**
 	 * 根据字典名字和字典值得到字典对象
@@ -32,5 +32,5 @@ public interface IDictDAO extends IBaseDAO<Dict> {
 	 * @return 字典对象
 	 * @throws Exception
 	 */
-	public Dict findByDictNameAndValue(final Dict dict) throws Exception;
+	public Dict findByDictNameAndValue(final Dict dict);
 }

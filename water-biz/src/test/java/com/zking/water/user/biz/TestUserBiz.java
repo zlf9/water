@@ -14,12 +14,12 @@ public class TestUserBiz extends BaseTestCase {
 	private IUserDAO userDAO;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		// userDAO = (IUserDAO) getBean("userDAO");
 	}
 
 	@Test
-	public void testGetById() throws Exception {
+	public void testGetById() {
 		// User user = userDAO.getById("0100000001");
 		// System.out.println(user.getUserName());
 	}

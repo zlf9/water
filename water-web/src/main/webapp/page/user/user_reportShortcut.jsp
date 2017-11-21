@@ -7,6 +7,12 @@
 </head> 
 <body> 
 <div id="wrapper">
+	<s:if test="result == null">
+		<script type="text/javascript">
+			location.href = "action/user/orderLite/findFreetext";
+		</script>
+	</s:if>
+
 	<s:action name="empAction!findAllEmp" namespace="/sy" var="empAction"></s:action>
 	
 	<%@ include file="/common/top.jsp"%>
@@ -38,7 +44,10 @@
 				快捷操作记录
 			</div>	
 			<s:if test="result == null">
-					<div class="center"><h4>请先查询</h4></div>
+				<div class="center"><h4>请先查询</h4></div>
+				<script type="text/javascript">
+					location.href = "action/user/orderLite/findFreetext";
+				</script>
 			</s:if>
 			<s:else>
 				<div class="height24">

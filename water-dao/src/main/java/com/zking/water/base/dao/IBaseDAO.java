@@ -23,7 +23,7 @@ public interface IBaseDAO<T> extends Serializable {
 	 * @return
 	 * @throws Exception
 	 */
-	public Serializable save(T t) throws Exception;
+	public Serializable save(T t);
 
 	/**
 	 * 删
@@ -31,7 +31,7 @@ public interface IBaseDAO<T> extends Serializable {
 	 * @param t
 	 * @throws Exception
 	 */
-	public void delete(T t) throws Exception;
+	public void delete(T t);
 
 	/**
 	 * 删
@@ -39,7 +39,7 @@ public interface IBaseDAO<T> extends Serializable {
 	 * @param id
 	 * @throws Exception
 	 */
-	public void delete(Serializable id) throws Exception;
+	public void delete(Serializable id);
 
 	/**
 	 * 改
@@ -47,7 +47,7 @@ public interface IBaseDAO<T> extends Serializable {
 	 * @param t
 	 * @throws Exception
 	 */
-	public void update(T t) throws Exception;
+	public void update(T t);
 
 	/**
 	 * 查 根据id查询
@@ -56,7 +56,7 @@ public interface IBaseDAO<T> extends Serializable {
 	 * @return
 	 * @throws Exception
 	 */
-	public T getById(Serializable id) throws Exception;
+	public T getById(Serializable id);
 
 	/**
 	 * 查询全部
@@ -64,7 +64,7 @@ public interface IBaseDAO<T> extends Serializable {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<T> findAll() throws Exception;
+	public List<T> findAll();
 
 	/**
 	 * 查 符合条件的总记录数
@@ -73,7 +73,7 @@ public interface IBaseDAO<T> extends Serializable {
 	 * @return
 	 * @throws Exception
 	 */
-	public Integer getTotalCount(DetachedCriteria dc) throws Exception;
+	public Integer getTotalCount(DetachedCriteria dc);
 
 	/**
 	 * 查 查询分页列表数据
@@ -84,7 +84,7 @@ public interface IBaseDAO<T> extends Serializable {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<T> getPageList(DetachedCriteria dc, Integer start, Integer pageSize) throws Exception;
+	public List<T> getPageList(DetachedCriteria dc, Integer start, Integer pageSize);
 
 	/**
 	 * 查全部,支持分页

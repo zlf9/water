@@ -5,6 +5,7 @@ import com.zking.water.sy.entity.Emp;
 
 /**
  * 员工数据访问对象
+ * 
  * @author Administrator
  *
  */
@@ -16,5 +17,5 @@ public interface IEmpDAO extends IBaseDAO<Emp> {
 	 * @param emp
 	 * @return
 	 */
-	public Emp doLogin(final Emp emp) throws Exception;
+	public Emp doLogin(final Emp emp);
 }

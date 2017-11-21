@@ -24,7 +24,7 @@ public class OrderLiteBizImpl extends BaseBizImpl<OrderLite> implements IOrderLi
 	}
 
 	@Override
-	public List<OrderLite> findFreetext(OrderLite orderLite, PageBean pageBean) throws Exception {
+	public List<OrderLite> findFreetext(OrderLite orderLite, PageBean pageBean) {
 		return orderLiteDAO.findFreetext(orderLite, pageBean);
 	}
 }

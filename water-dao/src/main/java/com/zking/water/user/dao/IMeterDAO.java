@@ -19,5 +19,5 @@ public interface IMeterDAO extends IBaseDAO<Meter> {
 	 * @return 水表编号
 	 * @throws Exception
 	 */
-	public String doGenerateMeterNo(String UserNo) throws Exception;
+	public String doGenerateMeterNo(String UserNo);
 }

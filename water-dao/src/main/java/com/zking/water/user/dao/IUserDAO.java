@@ -24,7 +24,7 @@ public interface IUserDAO extends IBaseDAO<User> {
 	 * @return 查询出来的用户集合
 	 * @throws Exception
 	 */
-	public List<User> findFreetext(User user, PageBean pageBean) throws Exception;
+	public List<User> findFreetext(User user, PageBean pageBean);
 
 	/**
 	 * 根据辖区ID生成用户编号
@@ -34,48 +34,48 @@ public interface IUserDAO extends IBaseDAO<User> {
 	 * @return 用户编号
 	 * @throws Exception
 	 */
-	public String doGenerateUserNo(Integer areaId) throws Exception;
+	public String doGenerateUserNo(Integer areaId);
 
 	/**
 	 * 过户
 	 * 
 	 * @param user
 	 */
-	public void doChangeName(User user) throws Exception;
+	public void doChangeName(User user);
 
 	/**
 	 * 代扣
 	 * 
 	 * @param user
 	 */
-	public void doChangeBank(User user) throws Exception;
+	public void doChangeBank(User user);
 
 	/**
 	 * 换表
 	 * 
 	 * @param user
 	 */
-	public void doChangeMeter(User user) throws Exception;
+	public void doChangeMeter(User user);
 
 	/**
 	 * 重签
 	 * 
 	 * @param user
 	 */
-	public void doChangeFormula(User user) throws Exception;
+	public void doChangeFormula(User user);
 
 	/**
 	 * 销户
 	 * 
 	 * @param user
 	 */
-	public void doCloseAccount(User user) throws Exception;
+	public void doCloseAccount(User user);
 
 	/**
 	 * 档案号管理
 	 * 
 	 * @param user
 	 */
-	public void doChangeDocNum(User user) throws Exception;
+	public void doChangeDocNum(User user);
 
 }

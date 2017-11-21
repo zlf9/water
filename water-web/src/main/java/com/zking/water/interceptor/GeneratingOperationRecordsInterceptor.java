@@ -26,6 +26,14 @@ public class GeneratingOperationRecordsInterceptor extends MethodFilterIntercept
 	private IOrderLiteBiz orderLiteBiz = SpringContextUtil.getBean("orderLiteBiz");
 	private IDictBiz dictBiz = SpringContextUtil.getBean("dictBiz");
 
+	@Override
+	protected String doIntercept(ActionInvocation invocation) throws Exception {
+		before(invocation);
+		String resultCode = invocation.invoke();// 执行方法
+		after(invocation, resultCode);
+		return resultCode;
+	}
+
 	/**
 	 * 执行方法之前执行
 	 * 
@@ -34,7 +42,7 @@ public class GeneratingOperationRecordsInterceptor extends MethodFilterIntercept
 	 * @param invocation
 	 * @throws Exception
 	 */
-	public void before(ActionInvocation invocation) throws Exception {
+	public void before(ActionInvocation invocation) {
 		ActionProxy actionProxy = invocation.getProxy();
 		String method = actionProxy.getMethod();
 		System.out.println(actionProxy.getActionName());
@@ -84,26 +92,17 @@ public class GeneratingOperationRecordsInterceptor extends MethodFilterIntercept
 			case "doChangeFormula":// 如果为doChangeFormula
 				orderLite = new OrderLite();
 				orderLite.setOrderType(6);// 设置工单类型（1新户 2分户 3过户 4代扣 5换表 6重签 7销户）
-				orderLite.setDescription("旧提比提量：[SH:100%]" + user.getMeter().getMeterType().getMeterTypeName()
-						+ " 　 新提比提量：" + user.getFormula());// 设置说明
+				orderLite.setDescription("旧提比提量：" + userAction.getMessage() + " 　 新提比提量：" + user.getFormula());// 设置说明
 				break;
 			case "doCloseAccount":// 如果为doCloseAccount
 				orderLite = new OrderLite();
 				orderLite.setOrderType(7);// 设置工单类型（1新户 2分户 3过户 4代扣 5换表 6重签 7销户）
-				orderLite.setDescription("销户说明：此楼房已拆除");// 设置说明
+				orderLite.setDescription("销户说明：" + userAction.getMessage());// 设置说明
 				break;
 			}
 			orderLite.setUser(user);// 设置用户（被操作的用户）
 			orderLite.setEmp(e);// 设置员工（操作人）
 			orderLiteBiz.save(orderLite);
 		}
-	}
-
-	@Override
-	protected String doIntercept(ActionInvocation invocation) throws Exception {
-		before(invocation);
-		String resultCode = invocation.invoke();// 执行方法
-		after(invocation, resultCode);
-		return resultCode;
 	}
 }

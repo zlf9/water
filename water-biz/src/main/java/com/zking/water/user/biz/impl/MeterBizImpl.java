@@ -24,7 +24,7 @@ public class MeterBizImpl extends BaseBizImpl<Meter> implements IMeterBiz {
 
 	// 新增水表
 	@Override
-	public Serializable save(Meter meter) throws Exception {
+	public Serializable save(Meter meter) {
 		String meterNo = meterDAO.doGenerateMeterNo(meter.getUser().getUserNo());
 		meter.setMeterNo(meterNo);
 		return meterDAO.save(meter);

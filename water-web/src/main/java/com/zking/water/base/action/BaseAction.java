@@ -123,8 +123,12 @@ public class BaseAction<T> implements ModelDriven<T>, ServletRequestAware, Servl
 	 * @return 字典对象集合
 	 * @throws Exception
 	 */
-	public List<Dict> findAllByDictName(String dictName) throws Exception {
-		return StringUtils.isNotBlank(dictName) ? dictBiz.findAllByDictName(dictName) : null;
+	public List<Dict> findAllByDictName(String dictName) {
+		try {
+			return StringUtils.isNotBlank(dictName) ? dictBiz.findAllByDictName(dictName) : null;
+		} catch (Exception e) {
+			throw new RuntimeException("根据字典名字得到字典对象集合失败", e);
+		}
 	}
 
 	/**
@@ -137,8 +141,12 @@ public class BaseAction<T> implements ModelDriven<T>, ServletRequestAware, Servl
 	 * @return 字典文本
 	 * @throws Exception
 	 */
-	public String findByDictNameAndValue(String dictName, Integer value) throws Exception {
-		return dictBiz.findByDictNameAndValue(new Dict(dictName, value)).getText();
+	public String findByDictNameAndValue(String dictName, Integer value) {
+		try {
+			return dictBiz.findByDictNameAndValue(new Dict(dictName, value)).getText();
+		} catch (Exception e) {
+			throw new RuntimeException("根据字典名字和字典值得到字典文本失败", e);
+		}
 	}
 
 	/**

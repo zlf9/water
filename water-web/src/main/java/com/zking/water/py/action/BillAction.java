@@ -17,9 +17,18 @@ public class BillAction extends BaseAction<Bill> {
 		this.billBiz = billBiz;
 	}
 
-	public String getById() throws Exception {
-		result = StringUtils.isNotBlank(model.getBillNo()) ? billBiz.getById(model.getBillNo()) : null;// 如果水费单编号不为空则根据水费单编号查询水费单对象，否则直接为NULL
-		return "getById";
+	/**
+	 * 根据水费单编号查询水费单
+	 * 
+	 * @return
+	 */
+	public String getById() {
+		try {
+			result = StringUtils.isNotBlank(model.getBillNo()) ? billBiz.getById(model.getBillNo()) : null;// 如果水费单编号不为空则根据水费单编号查询水费单对象，否则直接为NULL
+			return "getById";
+		} catch (Exception e) {
+			throw new RuntimeException("根据水费单编号查询水费单失败", e);
+		}
 	}
 
 }

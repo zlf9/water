@@ -21,12 +21,12 @@ public class DictBizImpl extends BaseBizImpl<Dict> implements IDictBiz {
 	}
 
 	@Override
-	public List<Dict> findAllByDictName(String dictName) throws Exception {
+	public List<Dict> findAllByDictName(String dictName) {
 		return dictDAO.findAllByDictName(dictName);
 	}
 
 	@Override
-	public Dict findByDictNameAndValue(Dict dict) throws Exception {
+	public Dict findByDictNameAndValue(Dict dict) {
 		return dictDAO.findByDictNameAndValue(dict);
 	}
 }

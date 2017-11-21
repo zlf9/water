@@ -25,42 +25,42 @@ public class BaseBizImpl<T> implements IBaseBiz<T> {
 	}
 
 	@Override
-	public Serializable save(T t) throws Exception {
+	public Serializable save(T t) {
 		return baseDAO.save(t);
 	}
 
 	@Override
-	public void delete(T t) throws Exception {
+	public void delete(T t) {
 		baseDAO.delete(t);
 	}
 
 	@Override
-	public void delete(Serializable id) throws Exception {
+	public void delete(Serializable id) {
 		baseDAO.delete(id);
 	}
 
 	@Override
-	public void update(T t) throws Exception {
+	public void update(T t) {
 		baseDAO.update(t);
 	}
 
 	@Override
-	public T getById(Serializable id) throws Exception {
+	public T getById(Serializable id) {
 		return baseDAO.getById(id);
 	}
 
 	@Override
-	public List<T> findAll() throws Exception {
+	public List<T> findAll() {
 		return baseDAO.findAll();
 	}
 
 	@Override
-	public Integer getTotalCount(DetachedCriteria dc) throws Exception {
+	public Integer getTotalCount(DetachedCriteria dc) {
 		return baseDAO.getTotalCount(dc);
 	}
 
 	@Override
-	public List<T> getPageList(DetachedCriteria dc, Integer start, Integer pageSize) throws Exception {
+	public List<T> getPageList(DetachedCriteria dc, Integer start, Integer pageSize) {
 		return baseDAO.getPageList(dc, start, pageSize);
 	}
 

@@ -24,44 +24,49 @@ public class UserBizImpl extends BaseBizImpl<User> implements IUserBiz {
 	}
 
 	@Override
-	public List<User> findFreetext(User user, PageBean pageBean) throws Exception {
+	public User getById(Serializable userNo) {
+		return userDAO.getById(userNo);
+	}
+
+	@Override
+	public List<User> findFreetext(User user, PageBean pageBean) {
 		return userDAO.findFreetext(user, pageBean);
 	}
 
 	@Override
-	public Serializable save(User user) throws Exception {
+	public Serializable save(User user) {
 		String userNo = userDAO.doGenerateUserNo(user.getAreaId());
 		user.setUserNo(userNo);
 		return userDAO.save(user);
 	}
 
 	@Override
-	public void doChangeName(User user) throws Exception {
+	public void doChangeName(User user) {
 		userDAO.doChangeName(user);
 	}
 
 	@Override
-	public void doChangeBank(User user) throws Exception {
+	public void doChangeBank(User user) {
 		userDAO.doChangeBank(user);
 	}
 
 	@Override
-	public void doChangeMeter(User user) throws Exception {
+	public void doChangeMeter(User user) {
 		userDAO.doChangeMeter(user);
 	}
 
 	@Override
-	public void doChangeFormula(User user) throws Exception {
+	public void doChangeFormula(User user) {
 		userDAO.doChangeFormula(user);
 	}
 
 	@Override
-	public void doCloseAccount(User user) throws Exception {
+	public void doCloseAccount(User user) {
 		userDAO.doCloseAccount(user);
 	}
 
 	@Override
-	public void doChangeDocNum(User user) throws Exception {
+	public void doChangeDocNum(User user) {
 		userDAO.doChangeDocNum(user);
 	}
 }

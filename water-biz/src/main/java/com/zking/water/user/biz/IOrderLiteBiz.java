@@ -24,5 +24,5 @@ public interface IOrderLiteBiz extends IBaseBiz<OrderLite> {
 	 * @return 查询出来的操作记录集合
 	 * @throws Exception
 	 */
-	public List<OrderLite> findFreetext(OrderLite orderLite, PageBean pageBean) throws Exception;
+	public List<OrderLite> findFreetext(OrderLite orderLite, PageBean pageBean);
 }

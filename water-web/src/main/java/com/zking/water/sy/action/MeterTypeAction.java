@@ -15,9 +15,13 @@ public class MeterTypeAction extends BaseAction<MeterType> {
 		this.meterTypeBiz = meterTypeBiz;
 	}
 
-	public String findAllMeterType() throws Exception {
-		result = meterTypeBiz.findAll();// 查询全部水表型号
-		return NONE;
+	public String findAllMeterType() {
+		try {
+			result = meterTypeBiz.findAll();// 查询全部水表型号
+			return NONE;
+		} catch (Exception e) {
+			throw new RuntimeException("查询全部水表型号失败", e);
+		}
 	}
 
 }

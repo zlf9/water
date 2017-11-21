@@ -17,5 +17,5 @@ public interface IEmpBiz extends IBaseBiz<Emp> {
 	 * @param emp
 	 * @return
 	 */
-	public Emp doLogin(final Emp emp) throws Exception;
+	public Emp doLogin(final Emp emp);
 }

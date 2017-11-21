@@ -143,11 +143,11 @@
 												<td>用户余额</td>
 												<td><input readonly="readonly" class="right" value="<s:property value='result.userMoney'/>" />元</td>
 												<td>用户欠款</td>
-												<td><input readonly="readonly" class="right" value="0" />元</td>
+												<td><input readonly="readonly" class="right" value="0.00" />元</td>
 											</s:if>
 											<s:else>
 												<td>用户余额</td>
-												<td><input readonly="readonly" class="right" value="0" />元</td>
+												<td><input readonly="readonly" class="right" value="0.00" />元</td>
 												<td>用户欠款</td><s:number name="result.userMoney" />
 												<td><input readonly="readonly" class="right" value="<s:property value='@java.lang.Math@abs(result.userMoney)'/>" />元</td>
 											</s:else>

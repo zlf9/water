@@ -16,7 +16,7 @@ public class MeterDAOImpl extends BaseDAOImpl<Meter> implements IMeterDAO {
 
 	// 根据用户编号生成水表编号
 	@Override
-	public String doGenerateMeterNo(String UserNo) throws Exception {
+	public String doGenerateMeterNo(String UserNo) {
 		try {
 			// 调用存储过程
 			String procdure = "{Call proc_generate_meterNo(:userNo,:meterNo)}";
