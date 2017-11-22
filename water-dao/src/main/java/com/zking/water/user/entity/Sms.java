@@ -15,10 +15,9 @@ public class Sms extends BaseEntity {
 
 	private Integer id;// 短信群发记录编号
 	private java.sql.Timestamp sendTime;// 发送时间
-	private String message;// 发送内容
+	private String message;// 发送内容（群发内容）
 	private Integer typee;// 发送类型（0给所有用户发 1只给欠费用户发）
 
-	private User user;// 对应用户
 	private Emp emp;// 操作人
 
 	public Sms() {
@@ -65,14 +64,6 @@ public class Sms extends BaseEntity {
 
 	public void setTypee(Integer typee) {
 		this.typee = typee;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public Emp getEmp() {

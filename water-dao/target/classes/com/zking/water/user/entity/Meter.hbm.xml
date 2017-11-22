@@ -28,8 +28,7 @@
 		</property>
 
 		<!-- 一个水表只属于一种水表类型 多个水表可以属于同一种水表类型 -->
-		<many-to-one name="meterType" class="com.zking.water.sy.entity.MeterType"
-			fetch="join">
+		<many-to-one name="meterType" class="com.zking.water.sy.entity.MeterType">
 			<column name="MeterTypeId" />
 		</many-to-one>
 

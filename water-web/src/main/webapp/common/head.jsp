@@ -51,7 +51,8 @@ table.data thead th {
 }
 </style>
 
-<script src="js/jquery/jquery-1.5.2.min.js"></script>
+<script src="js/jquery/jquery-1.11.0.min.js"></script>
+<script src="js/jquery/jquery.table2excel.js"></script>
 <script src="js/jquery/jquery-ui-1.8.12.custom.min.js"></script>
 <script src="js/misc/excanvas.min.js"></script>
 <script src="js/jquery/facebox.js"></script>
@@ -73,5 +74,6 @@ table.data thead th {
 		$('.tab_container').tabs();
 		
 		$("#pagetitle").text($(".x12 h2").text());
+		
 	});
 </script>

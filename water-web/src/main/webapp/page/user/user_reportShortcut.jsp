@@ -7,11 +7,6 @@
 </head> 
 <body> 
 <div id="wrapper">
-	<s:if test="result == null">
-		<script type="text/javascript">
-			location.href = "action/user/orderLite/findFreetext";
-		</script>
-	</s:if>
 
 	<s:action name="empAction!findAllEmp" namespace="/sy" var="empAction"></s:action>
 	
@@ -26,7 +21,7 @@
 			<div class="searchDiv">
 				<form action="action/user/orderLite/findFreetext" method="post">
 					操作类型 <s:select list="#empAction.findAllByDictName('工单类型')" listKey="value" listValue="text" name="orderType" value="#session.orderLite.orderType" headerKey="-1" headerValue="所有" class="medium"></s:select>
-					操作人员 <s:select list="#empAction.result" listKey="id" listValue="empName" name="empId" value="#session.orderLite.emp.empId" headerKey="-1" headerValue="所有" class="medium"></s:select>
+					操作人员 <s:select list="#empAction.result" listKey="id" listValue="empName" name="emp.id" value="#session.orderLite.emp.id" headerKey="-1" headerValue="所有" class="medium"></s:select>
 					
 					操作日期 <span class="between">
 								<input onClick="WdatePicker();" name="leftDatee" value="<fmt:formatDate value="${leftDatee }" pattern="yyyy-MM-dd"/>" />
@@ -45,9 +40,6 @@
 			</div>	
 			<s:if test="result == null">
 				<div class="center"><h4>请先查询</h4></div>
-				<script type="text/javascript">
-					location.href = "action/user/orderLite/findFreetext";
-				</script>
 			</s:if>
 			<s:else>
 				<div class="height24">
@@ -79,7 +71,9 @@
 						</s:if>
 					</tbody>
 				</table>
-				<z:page pageBean="${pageBean }" />
+				<div class="page">
+					<z:page pageBean="${pageBean }"/>
+				</div>
 			</s:else>
 		</div> <!-- .x12 -->
 		

@@ -95,12 +95,12 @@ public class GeneratingOperationRecordsInterceptor extends MethodFilterIntercept
 			case "doChangeFormula":// 如果为doChangeFormula
 				orderLite = new OrderLite();
 				orderLite.setOrderType(6);// 设置工单类型（1新户 2分户 3过户 4代扣 5换表 6重签 7销户）
-				orderLite.setDescription("旧提比提量：" + userAction.getMessage() + " 　 新提比提量：" + user.getFormula());// 设置说明
+				orderLite.setDescription("旧提比提量：" + user.getOldFormula() + " 　 新提比提量：" + user.getFormula());// 设置说明
 				break;
 			case "doCloseAccount":// 如果为doCloseAccount
 				orderLite = new OrderLite();
 				orderLite.setOrderType(7);// 设置工单类型（1新户 2分户 3过户 4代扣 5换表 6重签 7销户）
-				orderLite.setDescription("销户说明：" + userAction.getMessage());// 设置说明
+				orderLite.setDescription("销户说明：" + user.getCloseAccountRemark());// 设置说明
 				break;
 			}
 			orderLite.setUser(user);// 设置用户（被操作的用户）

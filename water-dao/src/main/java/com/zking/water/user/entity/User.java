@@ -48,6 +48,12 @@ public class User extends BaseEntity {
 	private Set<Read> reads = new HashSet<Read>();
 	private Set<Pay> pays = new HashSet<Pay>();
 
+	// 其他业务属性
+	private String oldUserName;// 原用户姓名
+	private String oldFormula;// 原提比提量值
+	private String sendMsg;// 发送内容(在短信群发时用来生成发送内容)
+	private String closeAccountRemark;// 销户说明(在销户时用来保存销户说明)
+
 	public User() {
 	}
 
@@ -290,15 +296,42 @@ public class User extends BaseEntity {
 		this.volume = volume;
 	}
 
+	public String getOldUserName() {
+		return oldUserName;
+	}
+
+	public void setOldUserName(String oldUserName) {
+		this.oldUserName = oldUserName;
+	}
+
+	public String getOldFormula() {
+		return oldFormula;
+	}
+
+	public void setOldFormula(String oldFormula) {
+		this.oldFormula = oldFormula;
+	}
+
+	public String getSendMsg() {
+		return sendMsg;
+	}
+
+	public void setSendMsg(String sendMsg) {
+		this.sendMsg = sendMsg;
+	}
+
+	public String getCloseAccountRemark() {
+		return closeAccountRemark;
+	}
+
+	public void setCloseAccountRemark(String closeAccountRemark) {
+		this.closeAccountRemark = closeAccountRemark;
+	}
+
 	@Override
 	public String toString() {
-		return "User [userNo=" + userNo + ", userName=" + userName + ", abc=" + abc + ", createDate=" + createDate
-				+ ", address=" + address + ", phone=" + phone + ", smsphone=" + smsphone + ", areaId=" + areaId
-				+ ", userType=" + userType + ", payType=" + payType + ", bankName=" + bankName + ", bankNum=" + bankNum
-				+ ", formula=" + formula + ", userMoney=" + userMoney + ", docNum=" + docNum + ", pwd=" + pwd
-				+ ", contractNum=" + contractNum + ", contractDate=" + contractDate + ", volumeOrderIndex="
-				+ volumeOrderIndex + ", disabled=" + disabled + ", meter=" + meter + ", volume=" + volume
-				+ ", formulas=" + formulas + ", reads=" + reads + ", pays=" + pays + "]";
+		return "User [userName=" + userName + ", sendMsg=" + sendMsg + "]";
 	}
+
 
 }

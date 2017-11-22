@@ -156,7 +156,6 @@ public class UserAction extends BaseAction<User> {
 	 * @throws Exception
 	 */
 	public String doCloseAccount() {
-		this.message = request.getParameter("closeAccountRemark");
 		String closeAccountResult = "";
 		try {
 			if (StringUtils.isNotBlank(model.getUserNo())) {// 如果用户编号不为空

@@ -27,10 +27,9 @@ public class OrderLiteAction extends BaseAction<OrderLite> {
 		try {
 			session.setAttribute("orderLite", model);// 查询条件
 			PageBean pageBean = handlerPageBean();
-			List<OrderLite> users = orderLiteBiz.findFreetext(model, pageBean);// 模糊查询返回快捷操作记录对象集合
+			List<OrderLite> orderLites = orderLiteBiz.findFreetext(model, pageBean);// 模糊查询返回快捷操作记录对象集合
 
-			result = null == users || pageBean.getTotalRecord() < 1 ? null
-					: pageBean.getTotalRecord() == 1 ? users.get(0) : users;// 如果没有查询到则为NULL,查询到只有一个则为快捷操作记录对象,查询到多个则为快捷操作记录对象集合
+			result = null == orderLites || pageBean.getTotalRecord() < 1 ? null : orderLites;// 如果没有查询到则为NULL,否则为快捷操作记录对象集合
 
 			return "user_reportShortcut";
 		} catch (Exception e) {

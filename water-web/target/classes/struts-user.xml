@@ -35,5 +35,9 @@
 		<action name="orderLiteAction" class="orderLiteAction">
 			<result name="user_reportShortcut">/page/user/user_reportShortcut</result>
 		</action>
+		
+		<action name="smsAction" class="smsAction">
+			<result name="user_sendMsg">/page/user/user_sendMsg</result>
+		</action>
 	</package>
 </struts>

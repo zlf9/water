@@ -78,4 +78,14 @@ public interface IUserDAO extends IBaseDAO<User> {
 	 */
 	public void doChangeDocNum(User user);
 
+	/**
+	 * 
+	 * 查询所有欠费用户,支持分页
+	 * 
+	 * @param pageBean
+	 * 
+	 * @return 欠费用户对象集合
+	 */
+	public List<User> findAllLackOfUser(PageBean pageBean);
+
 }

@@ -69,4 +69,9 @@ public class UserBizImpl extends BaseBizImpl<User> implements IUserBiz {
 	public void doChangeDocNum(User user) {
 		userDAO.doChangeDocNum(user);
 	}
+
+	@Override
+	public List<User> findAllLackOfUser(PageBean pageBean) {
+		return userDAO.findAllLackOfUser(pageBean);
+	}
 }

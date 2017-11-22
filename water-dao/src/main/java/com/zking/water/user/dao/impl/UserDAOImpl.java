@@ -52,27 +52,28 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements IUserDAO {
 			String hql = "from User where 1=1";
 			Map<String, Object> args = new HashMap<String, Object>();
 
-			if (StringUtils.isNotBlank(user.getUserNo())) {
-				hql += " and userNo like :userNo";
-				args.put("userNo", "%" + user.getUserNo().trim() + "%");
+			if (null != user) {
+				if (StringUtils.isNotBlank(user.getUserNo())) {
+					hql += " and userNo like :userNo";
+					args.put("userNo", "%" + user.getUserNo().trim() + "%");
+				}
+				if (StringUtils.isNotBlank(user.getAbc())) {
+					hql += " and abc like :abc";
+					args.put("abc", "%" + user.getAbc().trim() + "%");
+				}
+				if (StringUtils.isNotBlank(user.getUserName())) {
+					hql += " and userName like :userName";
+					args.put("userName", "%" + user.getUserName().trim() + "%");
+				}
+				if (StringUtils.isNotBlank(user.getPhone())) {
+					hql += " and phone like :phone";
+					args.put("phone", "%" + user.getPhone().trim() + "%");
+				}
+				if (StringUtils.isNotBlank(user.getAddress())) {
+					hql += " and address like :address";
+					args.put("address", "%" + user.getAddress().trim() + "%");
+				}
 			}
-			if (StringUtils.isNotBlank(user.getAbc())) {
-				hql += " and abc like :abc";
-				args.put("abc", "%" + user.getAbc().trim() + "%");
-			}
-			if (StringUtils.isNotBlank(user.getUserName())) {
-				hql += " and userName like :userName";
-				args.put("userName", "%" + user.getUserName().trim() + "%");
-			}
-			if (StringUtils.isNotBlank(user.getPhone())) {
-				hql += " and phone like :phone";
-				args.put("phone", "%" + user.getPhone().trim() + "%");
-			}
-			if (StringUtils.isNotBlank(user.getAddress())) {
-				hql += " and address like :address";
-				args.put("address", "%" + user.getAddress().trim() + "%");
-			}
-
 			hql += " and disabled = 0";
 
 			// Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
@@ -190,6 +191,16 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements IUserDAO {
 			}
 		} catch (Exception e) {
 			throw new RuntimeException("档案号管理失败", e);
+		}
+	}
+
+	@Override
+	public List<User> findAllLackOfUser(PageBean pageBean) {
+		try {
+			String hql = "from User u where u.userMoney < 0";
+			return this.executeQuery(hql, null, pageBean);
+		} catch (Exception e) {
+			throw new RuntimeException("查询所有欠费用户失败", e);
 		}
 	}
 }

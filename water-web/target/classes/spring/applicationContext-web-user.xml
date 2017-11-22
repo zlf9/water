@@ -17,4 +17,9 @@
 		scope="prototype" parent="baseAction">
 		<property name="orderLiteBiz" ref="orderLiteBiz"></property>
 	</bean>
+	<bean id="smsAction" class="com.zking.water.user.action.SmsAction"
+		scope="prototype" parent="baseAction">
+		<property name="smsBiz" ref="smsBiz"></property>
+		<property name="userBiz" ref="userBiz"></property>
+	</bean>
 </beans>

@@ -15,4 +15,7 @@
 	<bean id="orderLiteDAO" class="com.zking.water.user.dao.impl.OrderLiteDAOImpl"
 		parent="baseDAO">
 	</bean>
+	<bean id="smsDAO" class="com.zking.water.user.dao.impl.SmsDAOImpl"
+		parent="baseDAO">
+	</bean>
 </beans>

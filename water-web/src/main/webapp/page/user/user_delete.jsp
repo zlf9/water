@@ -99,7 +99,7 @@
 							class="medium" value="<s:property value="result.userNo"/>" />
 						<div class="field">
 							<label for="closeAccountRemark">销户说明</label> <input
-								id="closeAccountRemark" name="closeAccountRemark" size="100"
+								id="closeAccountRemark" name="user.closeAccountRemark" size="100"
 								type="text" class="medium" value="" />
 						</div>
 

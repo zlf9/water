@@ -46,8 +46,9 @@ table.data thead th {
 				</s:if>
 			</tbody>
 		</table>
-		
-		<z:page pageBean="${pageBean }" />
+		<div class="page">
+			<z:page pageBean="${pageBean }"/>
+		</div>
 
 	</div>
 

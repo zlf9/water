@@ -20,4 +20,8 @@
 		parent="baseBiz">
 		<property name="orderLiteDAO" ref="orderLiteDAO"></property>
 	</bean>
+	<bean id="smsBiz" class="com.zking.water.user.biz.impl.SmsBizImpl"
+		parent="baseBiz">
+		<property name="smsDAO" ref="smsDAO"></property>
+	</bean>
 </beans>

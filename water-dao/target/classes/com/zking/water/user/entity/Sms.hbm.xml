@@ -2,10 +2,9 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property"
 	default-cascade="none" default-lazy="true">
-	<class catalog="water02" dynamic-insert="false"
-		dynamic-update="false" mutable="true" name="com.zking.water.user.entity.Sms"
-		optimistic-lock="version" polymorphism="implicit"
-		select-before-update="false" table="t_us_sms">
+	<class catalog="water02" dynamic-insert="false" dynamic-update="false"
+		mutable="true" name="com.zking.water.user.entity.Sms" optimistic-lock="version"
+		polymorphism="implicit" select-before-update="false" table="t_us_sms">
 		<id name="id" type="java.lang.Integer">
 			<column name="ID" />
 			<generator class="native" />
@@ -23,10 +22,7 @@
 			<column name="Typee" not-null="true" />
 		</property>
 
-		<many-to-one name="user" class="com.zking.water.user.entity.User" fetch="join">
-			<column name="UserNo"></column>
-		</many-to-one>
-		<many-to-one name="emp" class="com.zking.water.sy.entity.Emp" fetch="join">
+		<many-to-one name="emp" class="com.zking.water.sy.entity.Emp">
 			<column name="EmpID"></column>
 		</many-to-one>
 	</class>
