@@ -24,6 +24,12 @@
 		var userNo = $("#userNo").val().trim();
 		var oweMoney = $("#oweMoney").val().trim();
 		var closeAccountRemark = $("#closeAccountRemark").val().trim();
+		
+		if(""==userNo){
+			$("#message").html("请查询需要销户的用户后再进行操作");
+			return false;
+		}
+		
 		if (oweMoney != '0.00 元') {
 			//alert("注：此户水费尚未清算，不能销户。");
 			$("#closeAccountSubmit").attr("disabled", true);
@@ -33,10 +39,9 @@
 			return false;
 		}
 		if ("" == closeAccountRemark) {
-			alert("请输入销户说明");
+			$("#message").html("请输入销户说明");
 			return false;
 		}
-		return "" != userNo && "" != closeAccountRemark;
 	}
 </script>
 </head>
@@ -106,6 +111,8 @@
 						<div id="owe"
 							style="padding-left: 145px; color: red; display: block;">
 							注：此户水费尚未清算，不能销户。</div>
+							
+						<div id="message" style="padding-left: 145px; color: red; display: block;"></div>
 						<div class="buttonrow">
 							<button id="closeAccountSubmit" class="btn" disabled="disabled"
 								type="submit">销户</button>

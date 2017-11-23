@@ -21,7 +21,7 @@
         <property generated="never" lazy="false" name="remark" optimistic-lock="true" type="java.lang.String" unique="false">
             <column length="1024" name="remark"/>
         </property>
-        <property generated="never" lazy="false" name="disabled" optimistic-lock="true" type="java.lang.Boolean" unique="false">
+        <property generated="insert" lazy="false" name="disabled" optimistic-lock="true" type="java.lang.Boolean" unique="false">
 			<column name="Disabled" />
 		</property>
     </class>

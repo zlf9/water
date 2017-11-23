@@ -82,7 +82,7 @@
 			optimistic-lock="true" type="java.lang.Integer" unique="false">
 			<column name="VolumeOrderIndex" />
 		</property>
-		<property generated="never" lazy="false" name="disabled"
+		<property generated="insert" lazy="false" name="disabled"
 			optimistic-lock="true" type="java.lang.Boolean" unique="false">
 			<column name="Disabled" />
 		</property>

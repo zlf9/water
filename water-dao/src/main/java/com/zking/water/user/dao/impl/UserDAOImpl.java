@@ -2,15 +2,19 @@ package com.zking.water.user.dao.impl;
 
 import java.io.Serializable;
 import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.sql.DataSource;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.HibernateCallback;
+import org.springframework.orm.hibernate5.SessionFactoryUtils;
 
 import com.zking.water.base.dao.impl.BaseDAOImpl;
 import com.zking.water.base.entity.PageBean;
@@ -98,15 +102,18 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements IUserDAO {
 	public String doGenerateUserNo(Integer areaId) {
 		try {
 			// 调用存储过程
-			String procdure = "{Call proc_generate_userNo(:areaId,:userNo)}";
-			CallableStatement cs = hibernateTemplate.getSessionFactory().getCurrentSession().disconnect()
-					.prepareCall(procdure);
+			String procdure = "{Call proc_generate_userNo(1,2)}";
+			// Hibernate3.3.2版本中getSession().connection()已被弃用，替代方法SessionFactoryUtils.getDataSource(getSessionFactory()).getConnection()
+			// 来自类org.springframework.orm.hibernate3.SessionFactoryUtils
+			DataSource dataSource = SessionFactoryUtils.getDataSource(hibernateTemplate.getSessionFactory());
+			Connection conn = dataSource.getConnection();
+			CallableStatement cs = conn.prepareCall(procdure);
 			// 入参要赋值
-			cs.setInt("areaId", areaId);
+			cs.setInt(1, areaId);
 			// 出参要注册
-			cs.registerOutParameter("userNo", java.sql.Types.VARCHAR);
+			cs.registerOutParameter(2, java.sql.Types.VARCHAR);
 			cs.execute();
-			return cs.getString("userNo");
+			return cs.getString(2);
 		} catch (Exception e) {
 			throw new RuntimeException("根据辖区ID生成用户编号失败", e);
 		}

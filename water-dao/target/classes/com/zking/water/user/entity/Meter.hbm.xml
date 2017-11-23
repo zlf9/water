@@ -22,7 +22,7 @@
 			optimistic-lock="true" type="java.lang.String" unique="false">
 			<column length="100" name="Factory" not-null="true" />
 		</property>
-		<property generated="never" lazy="false" name="disabled"
+		<property generated="insert" lazy="false" name="disabled"
 			optimistic-lock="true" type="java.lang.Boolean" unique="false">
 			<column name="Disabled" />
 		</property>
@@ -33,8 +33,7 @@
 		</many-to-one>
 
 		<!-- 一个水表只属于一个用户 many-to-one的作用是在Meter表中生成一个外键UserNo,且唯一,并参照User表中的主键 -->
-		<many-to-one name="user" class="com.zking.water.user.entity.User"
-			unique="true">
+		<many-to-one name="user" class="com.zking.water.user.entity.User">
 			<column name="UserNo" />
 		</many-to-one>
 	</class>

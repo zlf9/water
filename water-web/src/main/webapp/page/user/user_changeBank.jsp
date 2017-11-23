@@ -42,6 +42,11 @@
 			var bankNum = $("#bankNum").val().trim();
 			
 			
+			if(""==userNo){
+				$("#message").html("请查询需要代扣的用户后再进行操作");
+				return false;
+			}
+			
 			if(payTypeName != '银行代扣'){
 				if(oldPayType == payTypeName){
 					$("#message").html("新收款方式和原收款方式相同");
@@ -59,7 +64,6 @@
 					return false;
 				}
 			}
-			return ""!=userNo;
 		}
 	</script>
 </head> 

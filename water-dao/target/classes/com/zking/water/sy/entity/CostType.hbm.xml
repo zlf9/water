@@ -38,7 +38,7 @@
 			optimistic-lock="true" type="java.lang.String" unique="false">
 			<column length="200" name="Remark" />
 		</property>
-		<property generated="never" lazy="false" name="disabled"
+		<property generated="insert" lazy="false" name="disabled"
 			optimistic-lock="true" type="java.lang.Boolean" unique="false">
 			<column name="Disabled" />
 		</property>

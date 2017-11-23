@@ -90,16 +90,16 @@
 							<td>表身码</td>
 							<td><input name="meter.meterName"></td>
 							<td>水表类型</td>
-							<td><s:select list="#meterTypeAction.result" listValue="meterTypeName" listKey="id" listTitle="meterTypeName" name="meter.meterType.id" cssStyle="width:160px;" ></s:select></td>
+							<td><s:select list="#meterTypeAction.result" listValue="meterTypeName" listKey="id" listTitle="'水表口径:'+aperture+' 起始底码:'+minValue+' 最大码值:'+mavValue" name="meter.meterType.id" cssStyle="width:160px;" ></s:select></td>
 						</tr>
-						<tr>
-							<td>起始底码</td>
-							<td><input value="2"  readonly="readonly" /></td>
+						<!-- <tr>
 							<td>水表口径</td>
 							<td><input value="40"  readonly="readonly" /></td>
+							<td>起始底码</td>
+							<td><input value="2"  readonly="readonly" /></td>
 							<td>最大码值</td>
 							<td><input value="99999"  readonly="readonly" /></td>
-						</tr>
+						</tr> -->
 						<tr>
 							<td>装表日期</td>
 							<td><input name="meter.setupDate" onclick="WdatePicker()" /></td>

@@ -19,5 +19,19 @@ public interface IMeterDAO extends IBaseDAO<Meter> {
 	 * @return 水表编号
 	 * @throws Exception
 	 */
-	public String doGenerateMeterNo(String UserNo);
+	public String doGenerateMeterNo(String userNo);
+
+	/**
+	 * 解除绑定用户的水表 删除
+	 * 
+	 * @param userNo
+	 */
+	public void deleteByUserNo(final String userNo);
+
+	/**
+	 * 禁用水表
+	 * 
+	 * @param meter
+	 */
+	public void doDisableMeter(Meter meter);
 }

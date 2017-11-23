@@ -150,6 +150,31 @@ public class UserAction extends BaseAction<User> {
 	}
 
 	/**
+	 * 换表
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String doChangeMeter() {
+		String changeMeterResult = "";
+		try {
+			if (StringUtils.isNotBlank(model.getUserNo())) {// 如果用户编号不为空
+				model.getMeter().setUser(model);// 设置用户信息（需要用户编号）
+				Serializable meterNo = meterBiz.save(model.getMeter());// 新增水表成功后返回水表编号
+				model.getMeter().setMeterNo((String) meterNo);// 设置水表编号
+				userBiz.doChangeMeter(model);// 换表
+				changeMeterResult = SUCCESS;// 换表成功
+			} else {
+				changeMeterResult = ERROR;// 换表失败
+			}
+		} catch (Exception e) {
+			changeMeterResult = ERROR;// 换表失败
+			// throw new RuntimeException("换表失败", e);
+		}
+		return changeMeterResult;
+	}
+
+	/**
 	 * 销户
 	 * 
 	 * @return

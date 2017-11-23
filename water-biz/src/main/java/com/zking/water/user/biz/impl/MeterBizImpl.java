@@ -26,7 +26,13 @@ public class MeterBizImpl extends BaseBizImpl<Meter> implements IMeterBiz {
 	@Override
 	public Serializable save(Meter meter) {
 		String meterNo = meterDAO.doGenerateMeterNo(meter.getUser().getUserNo());
+		meterDAO.deleteByUserNo(meter.getUser().getUserNo());// 解除绑定用户的水表
 		meter.setMeterNo(meterNo);
 		return meterDAO.save(meter);
+	}
+
+	@Override
+	public void doDisableMeter(Meter meter) {
+		meterDAO.doDisableMeter(meter);
 	}
 }
