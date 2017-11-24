@@ -37,7 +37,7 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements IUserDAO {
 
 				@Override
 				public User doInHibernate(Session session) throws HibernateException {
-					String hql = "from User where disabled = 0 and userNo = " + userNo;
+					String hql = "from User where disabled = 0 and userNo = '" + userNo + "'";
 					Query<User> query = session.createQuery(hql);
 					return query.uniqueResult();
 				}

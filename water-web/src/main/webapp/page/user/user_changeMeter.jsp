@@ -7,7 +7,7 @@
 	
 	<script type="text/javascript">
 	
-		$(function(){
+		$(document).ready(function() {
 			doChangeMeterType();
 		});
 		

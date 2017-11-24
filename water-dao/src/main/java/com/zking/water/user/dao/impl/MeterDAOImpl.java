@@ -89,7 +89,7 @@ public class MeterDAOImpl extends BaseDAOImpl<Meter> implements IMeterDAO {
 						public void execute(Connection connection) throws SQLException {
 							String sql = "update t_us_meter m set disabled = 1 where disabled = 0 and m.userNo = ?";
 							PreparedStatement pstmt = connection.prepareStatement(sql);
-							pstmt.setString(1, meter.getUser().getUserNo());
+							pstmt.setString(1, "'" + meter.getUser().getUserNo() + "'");
 							pstmt.executeUpdate();
 						}
 					});

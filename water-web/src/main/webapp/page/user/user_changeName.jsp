@@ -19,12 +19,25 @@
 			var smsphone = $("#smsphone").val().trim();
 			var address = $("#address").val().trim();
 			
-			if(oldUserName == userName&&oldPhone == phone&&oldSMSPhone == smsphone&&oldAddress == address){
+			if(""==userNo){
+				$("#message").html("请查询需要过户的用户后再进行操作");
+				return false;
+			}else if("" == userName){
+				$("#message").html("用户姓名不能为空");
+				return false;
+			}else if("" == phone){
+				$("#message").html("联系电话不能为空");
+				return false;
+			}else if("" == smsphone){
+				$("#message").html("短信电话不能为空");
+				return false;
+			}else if("" == address){
+				$("#message").html("联系地址不能为空");
+				return false;
+			}else if(oldUserName == userName&&oldPhone == phone&&oldSMSPhone == smsphone&&oldAddress == address){
 				$("#message").html("新信息和原信息相同");
 				return false;
 			}
-			
-			return ""!=userNo&&""!=userName&&""!=phone&&""!=smsphone&&""!=address;
 		}
 	</script>
 </head> 

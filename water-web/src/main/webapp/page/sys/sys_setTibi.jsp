@@ -4,8 +4,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head> 
 	<%@ include file="/common/head.jsp"%>
+	
+	<script type="text/javascript">
+	
+		function ok(){
+			window.close(); //简单的处理
+			
+			//模拟返回数据
+			//returnWindow('[SH:100%]');
+		}
+		
+	</script>
 </head> 
-<body> 
+<body onload="init();"> 
 <s:action name="costTypeAction!findAllCostTypeByKind" namespace="/sy" var="costTypeAction">
 	<s:param name="kind" value="1"></s:param>
 </s:action>
@@ -17,7 +28,7 @@
 	<br/>
 	<h2>设置提比提量值</h2>
 
-	<input id="txtTibi" readonly="readonly" style="width:50%;" value="[SH:20][SY:30%][XZ:50%][GY:*]" />
+	<input id="txtTibi" readonly="readonly" style="width:50%;" value="" />
 	<button class="btn-icon btn-small btn-check btn-blue" onclick="ok();"><span></span>确定</button>
 	<button class="btn-icon btn-small btn-cross btn-grey" onclick="ok();"><span></span>取消</button>
 	
@@ -27,40 +38,15 @@
 	<thead>
 		<tr>
 			<th>用水类型</th>
-			<th>提取方式</th>
 			<th>提取值</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr class="odd">
-			<td>SH:生活用水</td>
-			<td><s:select list="#costTypeAction.findAllByDictName('提取方式')" listValue="text" listKey="value" name="allotType" cssStyle="height:28px;"></s:select></td>
-			<td><input value="20" /></td>
-			<td><button class="btn btn-small btn-red">移除</button></td>
-		</tr>
-		<tr class="even">
-			<td>SY:商业用水</td>
-			<td><s:select list="#costTypeAction.findAllByDictName('提取方式')" listValue="text" listKey="value" name="allotType" cssStyle="height:28px;"></s:select></td>
-			<td><input value="30%" /></td>
-			<td><button class="btn btn-small btn-red">移除</button></td>
-		</tr>
-		<tr class="odd">
-			<td>XZ:行政用水</td>
-			<td><s:select list="#costTypeAction.findAllByDictName('提取方式')" listValue="text" listKey="value" name="allotType" cssStyle="height:28px;"></s:select></td>
-			<td><input value="50%" /></td>
-			<td><button class="btn btn-small btn-red">移除</button></td>
-		</tr>
-		<tr class="even">
-			<td>GY:工业用水</td>
-			<td><s:select list="#costTypeAction.findAllByDictName('提取方式')" listValue="text" listKey="value" name="allotType" cssStyle="height:28px;"></s:select></td>
-			<td><input value="*" /></td>
-			<td><button class="btn btn-small btn-red">移除</button></td>
-		</tr>
 	</tbody>
 	</table>
 	
-	<s:select list="#costTypeAction.result" listValue="code+':'+costTypeName" listKey="id" name="id" headerKey="-1" headerValue="添加新规则" cssStyle="width:98%;" onchange="addtibi(this);"></s:select>
+	<s:select id="costTypeSelect" list="#costTypeAction.result" listValue="code+':'+costTypeName" listKey="id" name="id" headerKey="-1" headerValue="添加新规则" cssStyle="width:98%;" onchange="addtibi(this);"></s:select>
 	
 	<pre>操作说明：
 1.提量   指定常量值，如：20，说明提取20吨做为该类型用水
@@ -73,20 +59,55 @@
 	
 </div> <!-- #wrapper -->
 	<script type="text/javascript">
-		function ok(){
-			//parent.close(); //简单的处理
+		function init(){
+			var oldFormula = window.dialogArguments;
+			$("#txtTibi").val(oldFormula);
+			var reg=new RegExp("[\\[,\\]]","g");
+			oldFormula = oldFormula.replace(reg, ' ');
+			var fms = oldFormula.split("  ");
+			for(x in fms){
+				var fm = fms[x];
+				var arr = fm.split(":");
+				var fmCode = arr[0].trim();
+				var fmValue = arr[1].trim();
+				var codeName = $("#costTypeSelect option").eq(code2Id(fmCode)).text();
+				addtibi2(codeName,fmValue);
+			}
+		}
+		
+		function code2Id(code){
+			var id = -1;
+			$("#costTypeSelect option").each(function(i){
+				var text = $(this).text().trim();
+				var textCode = text.split(":")[0].trim();
+				if(code == textCode){
+					id = $(this).val();
+				}
+			});
 			
-			//模拟返回数据
-			//returnWindow('[SH:100%]');
+			return id;
 		}
 		
 		//添加提比提量规则
 		function addtibi(sel){
-			var name = $(sel).val();
+			var name = $("#costTypeSelect option:selected").text();
 			if(name=='添加新规则')return;
 			var tbody = $('#tibiTable tbody');
-			tbody.append('<tr><td>'+name+'</td><td><s:select list="#costTypeAction.findAllByDictName(\'提取方式\')" listValue="text" listKey="value" name="allotType" cssStyle="height:28px;"></s:select></td><td><input value="20%" /></td><td><button class="btn btn-small btn-red">移除</button></td></tr>');
+			tbody.append('<tr><td class="center">'+name+'</td><td class="center"><input value="0" /></td><td><button class="btn btn-small btn-red" onclick="removetibi(this);">移除</button></td></tr>');
+			$("#txtTibi").val($("#txtTibi").val()+"["+name.split(":")[0].trim()+":"+0+"]");
 		}
+		
+		//添加提比提量规则2
+		function addtibi2(codeName,value){
+			var tbody = $('#tibiTable tbody');
+			tbody.append('<tr><td class="center">'+codeName+'</td><td class="center"><input value="'+value+'" /></td><td><button class="btn btn-small btn-red" onclick="removetibi(this);">移除</button></td></tr>');
+		}
+		
+		//移除提比提量规则
+		function removetibi(sel){
+			sel.parentNode.parentNode.parentNode.removeChild(sel.parentNode.parentNode);
+		}
+		
 	</script>
 </body> 
 </html>

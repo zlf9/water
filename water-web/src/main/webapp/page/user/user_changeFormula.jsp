@@ -5,6 +5,32 @@
 <head> 
 	<%@ include file="/common/head.jsp"%>
 	
+	<base target="_self">
+	
+	<script type="text/javascript">
+		function setTibi() {
+			var oldFormula = $("#oldFormula").val().trim();
+			var formula = $("#formula").val().trim();
+			
+		
+			var returnFormula = window.showModalDialog("page/sys/sys_setTibi", "" == formula ? oldFormula : formula, "dialogHeight:600px;dialogWidth:800px;");
+			$("#formula").val(null==returnFormula||""==returnFormula.trim()?returnFormula:formula);
+			
+		
+			/* showWindow({
+				url : 'page/sys/sys_setTibi',
+				width : 630,
+				height : 500, 
+				callback: function(val){
+					//alert(val.addr);  //回调处理
+				}
+			}); */
+		}
+		
+		function doChangeFormula(){
+			return false;
+		}
+	</script>
 </head> 
 <body> 
 <div id="wrapper">
@@ -38,22 +64,42 @@
 			
 			<div class="form label-inline uniform">
 				<h3 style="width:50%;">快捷重签</h3>
-				<div class="field"><label for="id">用户编码</label> <input id="id" name="fname" size="50" type="text" class="medium" disabled="disabled" value="0100000987" /></div>
-				
-				<div class="field"><label for="name">用户姓名</label> <input id="name" name="lname" size="50" type="text" class="medium" disabled="disabled" value="张三" /></div>
-				
-				<div class="field"><label for="name">原提比提量</label> <span class="text_button">
-			<input id="batchTibi" disabled="disabled"
-				style="width:245px;" readonly="readonly" value="[SH:80%][SY:20%]" /></span></div>
+				<form action="action/user/user/doChangeFormula" method="post" onsubmit="return doChangeFormula()">
+					<div class="field">
+						<label for="userNo">用户编码</label> 
+						<input id="userNo" name="userNo" type="hidden" value="<s:property value="result.userNo"/>" />
+						<input id="oldUserNo" name="oldUserNo" size="50" type="text" class="medium" disabled="disabled" 
+							   value="<s:property value="result.userNo"/>" />
+					</div>
+						
+					<div class="field">
+						<label for="oldUserName">原用户姓名</label> 
+						<input id="oldUserName" name="oldUserName" size="50" type="text" class="medium" disabled="disabled" 
+							   value="<s:property value="result.userName"/>" />
+					</div>
+						
+					<div class="field">
+						<label for="oldFormula">原提比提量</label> 
+					    <span class="text_button">
+						<input id="oldFormula" name="oldFormula" disabled="disabled"
+						 	   style="width:342px;" readonly="readonly" value="<s:property value="result.formula"/>" />
+					    </span>
+					</div>
+								
+					<div class="field">
+						<label for="formula">现提比提量</label> 
+						<span class="text_button">
+							<input id="formula" name="formula" style="width:300px;" readonly="readonly" value="[SH:80%][SY:10%][GY:10%]" />
 							
-				<div class="field"><label for="name">现提比提量</label> <span class="text_button">
-			<input id="batchTibi" 
-				style="width:200px;" readonly="readonly" value="[SH:80%][SY:10%][GY:10%]" />
-			<button onClick="setTibi();">设定</button></span></div>
-
-				<div class="buttonrow">
-					<button class="btn">重新签订用水协议</button>
-				</div>
+							<button onClick="setTibi();" style="height:28px;">设定</button>
+						</span>
+					</div>
+	
+					<div id="message" style="padding-left: 145px; color: red; display: block;"></div>
+					<div class="buttonrow">
+						<button class="btn" type="submit">重新签订用水协议</button>
+					</div>
+				</form>
 
 			</div>
 		</div> <!-- .x12 -->
@@ -62,6 +108,7 @@
 	
 	<%@ include file="/common/bottom.jsp"%>	
 	
+	<c:remove var="user" scope="session"/>
 </div> <!-- #wrapper -->
 
 </body> 
