@@ -11,6 +11,8 @@
 	<bean id="userBiz" class="com.zking.water.user.biz.impl.UserBizImpl"
 		parent="baseBiz">
 		<property name="userDAO" ref="userDAO"></property>
+		<property name="meterDAO" ref="meterDAO"></property>
+		<property name="formulaDAO" ref="formulaDAO"></property>
 	</bean>
 	<bean id="meterBiz" class="com.zking.water.user.biz.impl.MeterBizImpl"
 		parent="baseBiz">

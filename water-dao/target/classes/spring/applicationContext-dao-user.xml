@@ -18,4 +18,7 @@
 	<bean id="smsDAO" class="com.zking.water.user.dao.impl.SmsDAOImpl"
 		parent="baseDAO">
 	</bean>
+	<bean id="formulaDAO" class="com.zking.water.user.dao.impl.FormulaDAOImpl"
+		parent="baseDAO">
+	</bean>
 </beans>

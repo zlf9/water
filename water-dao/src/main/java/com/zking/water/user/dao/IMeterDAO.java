@@ -2,6 +2,7 @@ package com.zking.water.user.dao;
 
 import com.zking.water.base.dao.IBaseDAO;
 import com.zking.water.user.entity.Meter;
+import com.zking.water.user.entity.User;
 
 /**
  * 水表数据访问对象
@@ -34,4 +35,11 @@ public interface IMeterDAO extends IBaseDAO<Meter> {
 	 * @param meter
 	 */
 	public void doDisableMeter(Meter meter);
+
+	/**
+	 * 根据用户编号修改水表信息
+	 * 
+	 * @param user
+	 */
+	public void doUpdateMeter(User user);
 }

@@ -10,8 +10,8 @@
 		function ok(){
 			window.close(); //简单的处理
 			
-			//模拟返回数据
-			//returnWindow('[SH:100%]');
+			//返回数据
+			window.returnValue=$("#txtTibi").val();
 		}
 		
 	</script>
@@ -70,8 +70,11 @@
 				var arr = fm.split(":");
 				var fmCode = arr[0].trim();
 				var fmValue = arr[1].trim();
-				var codeName = $("#costTypeSelect option").eq(code2Id(fmCode)).text();
-				addtibi2(codeName,fmValue);
+				var id = code2Id(fmCode);
+				if(id!=-1){
+					var codeName = $("#costTypeSelect option").eq(id).text();
+					addtibi2(codeName,fmValue);
+				}
 			}
 		}
 		
@@ -84,7 +87,6 @@
 					id = $(this).val();
 				}
 			});
-			
 			return id;
 		}
 		
@@ -93,21 +95,57 @@
 			var name = $("#costTypeSelect option:selected").text();
 			if(name=='添加新规则')return;
 			var tbody = $('#tibiTable tbody');
-			tbody.append('<tr><td class="center">'+name+'</td><td class="center"><input value="0" /></td><td><button class="btn btn-small btn-red" onclick="removetibi(this);">移除</button></td></tr>');
+			tbody.append('<tr><td class="center">'+name+'</td><td class="center"><input onchange="changeFormulaValue(this)" value="0" /></td><td><button class="btn btn-small btn-red" onclick="removetibi(this);">移除</button></td></tr>');
 			$("#txtTibi").val($("#txtTibi").val()+"["+name.split(":")[0].trim()+":"+0+"]");
 		}
 		
 		//添加提比提量规则2
 		function addtibi2(codeName,value){
 			var tbody = $('#tibiTable tbody');
-			tbody.append('<tr><td class="center">'+codeName+'</td><td class="center"><input value="'+value+'" /></td><td><button class="btn btn-small btn-red" onclick="removetibi(this);">移除</button></td></tr>');
+			tbody.append('<tr><td class="center">'+codeName+'</td><td class="center"><input onchange="changeFormulaValue(this)" value="'+value+'" /></td><td><button class="btn btn-small btn-red" onclick="removetibi(this);">移除</button></td></tr>');
 		}
 		
 		//移除提比提量规则
 		function removetibi(sel){
+			var index = -1;
+			$('#tibiTable tbody').children().each(function(i){
+				if(this == sel.parentNode.parentNode){
+					index = i;
+				}
+			});
+			
+			var txtTibi = $("#txtTibi").val();
+			var reg=new RegExp("[\\[,\\]]","g");
+			var newTxtTibi = txtTibi.replace(reg, ' ');
+			var fms = newTxtTibi.split("  ");
+			for(x in fms){
+				if(x == index){
+					//alert('['+fms[x].trim()+']');
+					$("#txtTibi").val(txtTibi.replace('['+fms[x].trim()+']', ''))
+				}
+			}
 			sel.parentNode.parentNode.parentNode.removeChild(sel.parentNode.parentNode);
 		}
 		
+		function changeFormulaValue(sel){
+			var index = -1;
+			$('#tibiTable tbody').children().each(function(i){
+				if(this == sel.parentNode.parentNode){
+					index = i;
+				}
+			});
+			
+			var txtTibi = $("#txtTibi").val();
+			var reg=new RegExp("[\\[,\\]]","g");
+			var newTxtTibi = txtTibi.replace(reg, ' ');
+			var fms = newTxtTibi.split("  ");
+			for(x in fms){
+				if(x == index){
+					//alert('['+fms[x].trim()+']');
+					$("#txtTibi").val(txtTibi.replace(fms[x].trim(), fms[x].trim().split(":")[0]+ ':'+$(sel).val()))
+				}
+			}
+		}
 	</script>
 </body> 
 </html>

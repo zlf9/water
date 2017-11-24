@@ -16,6 +16,7 @@ import org.springframework.orm.hibernate5.SessionFactoryUtils;
 import com.zking.water.base.dao.impl.BaseDAOImpl;
 import com.zking.water.user.dao.IMeterDAO;
 import com.zking.water.user.entity.Meter;
+import com.zking.water.user.entity.User;
 
 public class MeterDAOImpl extends BaseDAOImpl<Meter> implements IMeterDAO {
 
@@ -100,6 +101,39 @@ public class MeterDAOImpl extends BaseDAOImpl<Meter> implements IMeterDAO {
 
 		} catch (Exception e) {
 			throw new RuntimeException("禁用水表失败", e);
+		}
+	}
+
+	@Override
+	public void doUpdateMeter(final User user) {
+		try {
+			
+			hibernateTemplate.execute(new HibernateCallback<Meter>() {
+
+				@Override
+				public Meter doInHibernate(Session session) throws HibernateException {
+					session.doWork(new Work() {
+
+						@Override
+						public void execute(Connection connection) throws SQLException {
+							String sql = "update t_us_meter set meterNo = ?, MeterName = ?,MeterTypeID = ?,SetupDate = ?,Factory = ? where userNo = ?";
+							PreparedStatement pstmt = connection.prepareStatement(sql);
+							pstmt.setString(1, user.getMeter().getMeterNo());
+							pstmt.setString(2, user.getMeter().getMeterName());
+							pstmt.setInt(3, user.getMeter().getMeterType().getId());
+							pstmt.setTimestamp(4, user.getMeter().getSetupDate());
+							pstmt.setString(5, user.getMeter().getFactory());
+							pstmt.setString(6, user.getUserNo());
+							pstmt.executeUpdate();
+						}
+					});
+					return null;
+				}
+
+			});
+
+		} catch (Exception e) {
+			throw new RuntimeException("根据用户编号修改水表信息失败", e);
 		}
 	}
 }

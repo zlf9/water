@@ -8,13 +8,14 @@
 	<base target="_self">
 	
 	<script type="text/javascript">
+		var bool = false;
+	
 		function setTibi() {
 			var oldFormula = $("#oldFormula").val().trim();
 			var formula = $("#formula").val().trim();
 			
-		
 			var returnFormula = window.showModalDialog("page/sys/sys_setTibi", "" == formula ? oldFormula : formula, "dialogHeight:600px;dialogWidth:800px;");
-			$("#formula").val(null==returnFormula||""==returnFormula.trim()?returnFormula:formula);
+			$("#formula").val(null==returnFormula||""==returnFormula.trim()?formula:returnFormula);
 			
 		
 			/* showWindow({
@@ -27,8 +28,27 @@
 			}); */
 		}
 		
+		function doBtnClick(){
+			bool = true;
+		}
+		
 		function doChangeFormula(){
-			return false;
+			var submitBool = bool; 
+			bool = false;
+			
+			var userNo = $("#userNo").val().trim();
+			
+			var formula = $("#formula").val().trim();
+			
+			if(""==userNo){
+				$("#message").html("请查询需要换表的用户后再进行操作");
+				return false;
+			}else if("" == formula){
+				$("#message").html("请设定新的提比提量后再操作");
+				return false;
+			}
+			
+			return submitBool;
 		}
 	</script>
 </head> 
@@ -89,7 +109,7 @@
 					<div class="field">
 						<label for="formula">现提比提量</label> 
 						<span class="text_button">
-							<input id="formula" name="formula" style="width:300px;" readonly="readonly" value="[SH:80%][SY:10%][GY:10%]" />
+							<input id="formula" name="formula" style="width:300px;" readonly="readonly" value="" />
 							
 							<button onClick="setTibi();" style="height:28px;">设定</button>
 						</span>
@@ -97,7 +117,7 @@
 	
 					<div id="message" style="padding-left: 145px; color: red; display: block;"></div>
 					<div class="buttonrow">
-						<button class="btn" type="submit">重新签订用水协议</button>
+						<button class="btn" type="submit" onclick="doBtnClick()">重新签订用水协议</button>
 					</div>
 				</form>
 
