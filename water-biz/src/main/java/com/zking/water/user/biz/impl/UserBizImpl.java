@@ -92,6 +92,7 @@ public class UserBizImpl extends BaseBizImpl<User> implements IUserBiz {
 					: (fmValue.equals("*") ? null : Integer.parseInt(fmValue)));// 设置提取值,如果提比提量值包含百分号(%),则去掉百分号,如果提比提量值是*,则为null,否则为提量(取原值)
 
 			costType = new CostType();
+			costType.setId(1);// 设置用水类型编号(不知道为什么不设置这个就报错，好像可以随便设置?)
 			costType.setCode(fmCode);// 设置用水类型代码
 			f.setCostType(costType);// 绑定用水类型
 

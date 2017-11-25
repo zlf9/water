@@ -26,4 +26,8 @@
 		parent="baseBiz">
 		<property name="smsDAO" ref="smsDAO"></property>
 	</bean>
+	<bean id="formulaBiz" class="com.zking.water.user.biz.impl.FormulaBizImpl"
+		parent="baseBiz">
+		<property name="formulaDAO" ref="formulaDAO"></property>
+	</bean>
 </beans>

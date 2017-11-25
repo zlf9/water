@@ -191,7 +191,7 @@ public class UserAction extends BaseAction<User> {
 			}
 		} catch (Exception e) {
 			changeMeterResult = ERROR;// 重签失败
-			 throw new RuntimeException("重签失败", e);
+			throw new RuntimeException("重签失败", e);
 		}
 		return changeMeterResult;
 	}

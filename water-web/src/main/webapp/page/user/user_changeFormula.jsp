@@ -38,16 +38,20 @@
 			
 			var userNo = $("#userNo").val().trim();
 			
+			var oldFormula = $("#oldFormula").val().trim();
 			var formula = $("#formula").val().trim();
-			
-			if(""==userNo){
-				$("#message").html("请查询需要换表的用户后再进行操作");
-				return false;
-			}else if("" == formula){
-				$("#message").html("请设定新的提比提量后再操作");
-				return false;
+			if(submitBool){
+				if(""==userNo){
+					$("#message").html("请查询需要换表的用户后再进行操作");
+					return false;
+				}else if("" == formula){
+					$("#message").html("请设定新的提比提量后再操作");
+					return false;
+				}else if(oldFormula == formula){
+					$("#message").html("新提比提量与原提比提量相同");
+					return false;
+				}
 			}
-			
 			return submitBool;
 		}
 	</script>
@@ -103,6 +107,7 @@
 					    <span class="text_button">
 						<input id="oldFormula" name="oldFormula" disabled="disabled"
 						 	   style="width:342px;" readonly="readonly" value="<s:property value="result.formula"/>" />
+						<input type="hidden" name="oldFormula" value="<s:property value="result.formula"/>" />
 					    </span>
 					</div>
 								
