@@ -88,8 +88,7 @@
 		</property>
 
 		<!-- 一个用户只能有一个水表 property-ref后的user为Meter中定义的user属性 -->
-		<one-to-one name="meter" class="com.zking.water.user.entity.Meter"
-			cascade="save-update" property-ref="user" />
+		<one-to-one name="meter" class="com.zking.water.user.entity.Meter" property-ref="user" />
 
 		<!-- 一个用户只属于一个表册 多个用户可以属于同一个表册 -->
 		<many-to-one name="volume" class="com.zking.water.rd.entity.Volume">

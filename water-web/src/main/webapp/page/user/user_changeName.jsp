@@ -19,17 +19,30 @@
 			var smsphone = $("#smsphone").val().trim();
 			var address = $("#address").val().trim();
 			
+			var userNamePattern = /^([a-zA-Z0-9\u4e00-\u9fa5\·]{1,10})$/;
+			var phonePattern = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+			var phonePattern2 = /^((\d{3,4}-)|\d{3.4}-)?\d{7,8}$/;
+			
 			if(""==userNo){
 				$("#message").html("请查询需要过户的用户后再进行操作");
 				return false;
 			}else if("" == userName){
 				$("#message").html("用户姓名不能为空");
 				return false;
+			}else if(!userNamePattern.test(userName)){
+				$("#message").html("用户姓名格式错误");
+				return false;
 			}else if("" == phone){
 				$("#message").html("联系电话不能为空");
 				return false;
+			}else if((!phonePattern.test(phone))&&(!phonePattern2.test(phone))){
+				$("#message").html("联系电话格式错误");
+				return false;
 			}else if("" == smsphone){
 				$("#message").html("短信电话不能为空");
+				return false;
+			}else if((!phonePattern.test(smsphone))&&(!phonePattern2.test(smsphone))){
+				$("#message").html("短信电话格式错误");
 				return false;
 			}else if("" == address){
 				$("#message").html("联系地址不能为空");

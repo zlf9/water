@@ -102,7 +102,7 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements IUserDAO {
 	public String doGenerateUserNo(Integer areaId) {
 		try {
 			// 调用存储过程
-			String procdure = "{Call proc_generate_userNo(1,2)}";
+			String procdure = "{Call proc_generate_userNo(?,?)}";
 			// Hibernate3.3.2版本中getSession().connection()已被弃用，替代方法SessionFactoryUtils.getDataSource(getSessionFactory()).getConnection()
 			// 来自类org.springframework.orm.hibernate3.SessionFactoryUtils
 			DataSource dataSource = SessionFactoryUtils.getDataSource(hibernateTemplate.getSessionFactory());

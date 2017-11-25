@@ -7,13 +7,11 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.zking.water.base.action.BaseAction;
 import com.zking.water.base.entity.PageBean;
-import com.zking.water.user.biz.IMeterBiz;
 import com.zking.water.user.biz.IUserBiz;
 import com.zking.water.user.entity.User;
 
 public class UserAction extends BaseAction<User> {
 	private IUserBiz userBiz;
-	private IMeterBiz meterBiz;
 
 	public UserAction() {
 		super();
@@ -21,10 +19,6 @@ public class UserAction extends BaseAction<User> {
 
 	public void setUserBiz(IUserBiz userBiz) {
 		this.userBiz = userBiz;
-	}
-
-	public void setMeterBiz(IMeterBiz meterBiz) {
-		this.meterBiz = meterBiz;
 	}
 
 	/**
@@ -94,13 +88,14 @@ public class UserAction extends BaseAction<User> {
 		String saveResult = "";
 		try {
 			Serializable userNo = userBiz.save(model);// 新户
-			model.setUserNo((String) userNo);// 设置用户编号
-			model.getMeter().setUser(model);// 设置水表对应的用户为刚刚新建的用户
-			Serializable meterNo = meterBiz.save(model.getMeter());// 新增成功后返回水表编号
-			saveResult = StringUtils.isNotBlank((String) meterNo) ? SUCCESS : ERROR;// 如果水表编号不为空则新户成功,否则失败
+			// model.setUserNo((String) userNo);// 设置用户编号
+			// model.getMeter().setUser(model);// 设置水表对应的用户为刚刚新建的用户
+			// Serializable meterNo = meterBiz.save(model.getMeter());// 新增成功后返回水表编号
+			model.setUserNo((String) userNo);// 设置用户编号(用于生成操作记录)
+			saveResult = StringUtils.isNotBlank((String) userNo) ? SUCCESS : ERROR;// 如果水表编号不为空则新户成功,否则失败
 		} catch (Exception e) {
 			saveResult = ERROR;// 新户失败
-			// throw new RuntimeException("添加用户和水表失败", e);
+			throw new RuntimeException("添加用户和水表失败", e);
 		}
 		return saveResult;
 	}

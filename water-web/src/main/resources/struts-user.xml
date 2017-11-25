@@ -9,7 +9,7 @@
 			<interceptor name="generatingOperationRecordsInterceptor"
 				class="com.zking.water.interceptor.GeneratingOperationRecordsInterceptor">
 				<!-- 过滤方法 拦截器只对其中的方法起作用 -->
-				<param name="includeMethods">save,doChangeName,doChangeBank,doChangeMeter,doChangeFormula,doCloseAccount</param>
+				<param name="includeMethods">saveUser,doChangeName,doChangeBank,doChangeMeter,doChangeFormula,doCloseAccount</param>
 			</interceptor>
 			<interceptor-stack name="userStack">
 				<interceptor-ref name="defaultStack" />

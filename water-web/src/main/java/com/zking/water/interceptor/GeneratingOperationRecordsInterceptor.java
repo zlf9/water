@@ -68,7 +68,7 @@ public class GeneratingOperationRecordsInterceptor extends MethodFilterIntercept
 			Emp e = (Emp) userAction.getSession().getAttribute(Constants.EMP_LOGIN_SUCCESS);// 得到当前登录的员工
 			OrderLite orderLite = null;
 			switch (method) {// 请求的方法名
-			case "save":// 如果为save
+			case "saveUser":// 如果为save
 				orderLite = new OrderLite();// 创建快捷操作记录
 				orderLite.setOrderType(1);// 设置工单类型（1新户 2分户 3过户 4代扣 5换表 6重签 7销户）
 				orderLite.setDescription("此新户的提比提量：" + user.getFormula());// 设置说明

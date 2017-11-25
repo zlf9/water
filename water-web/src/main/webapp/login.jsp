@@ -14,6 +14,11 @@
 		var empNo = $("#empNo").val().trim();
 		var pwd = $("#pwd").val().trim();
 		if ("" != empNo && "" != pwd) {
+		
+			$("#doLogin").attr("disabled",true);
+			$("#doLogin").attr("class",
+							$("#doLogin").attr("class") + " btn-grey");
+			
 			$.post("action/sy/emp/doLogin", {
 				'empNo' : empNo,
 				'pwd' : pwd
@@ -24,6 +29,8 @@
 				} else {
 					alert("员工编号或者登陆密码错误");
 				}
+				$("#doLogin").attr("disabled",false);
+				$("#doLogin").attr("class","btn btn-orange");
 			}, "text"); 
 		} else {
 			alert("请输入完整登录信息");
@@ -50,7 +57,7 @@
 				<!-- .login_fields -->
 
 				<div class="login_actions">
-					<button type="button" onclick="doLogin()" class="btn btn-orange"
+					<button type="button" id="doLogin" onclick="doLogin()" class="btn btn-orange"
 						tabindex="3">登陆</button>
 				</div>
 			</div>

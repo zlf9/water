@@ -11,7 +11,9 @@ import com.zking.water.user.dao.IFormulaDAO;
 import com.zking.water.user.dao.IMeterDAO;
 import com.zking.water.user.dao.IUserDAO;
 import com.zking.water.user.entity.Formula;
+import com.zking.water.user.entity.Meter;
 import com.zking.water.user.entity.User;
+import com.zking.water.util.ChineseCharToEn;
 
 public class UserBizImpl extends BaseBizImpl<User> implements IUserBiz {
 	private static final long serialVersionUID = 1264222658209438863L;
@@ -47,11 +49,25 @@ public class UserBizImpl extends BaseBizImpl<User> implements IUserBiz {
 		return userDAO.findFreetext(user, pageBean);
 	}
 
+	/**
+	 * 新增用户,并且同时新增水表.(水表和用户绑定)
+	 */
 	@Override
 	public Serializable save(User user) {
-		String userNo = userDAO.doGenerateUserNo(user.getAreaId());
-		user.setUserNo(userNo);
-		return userDAO.save(user);
+		Meter meter = user.getMeter();// 得到用户中水表信息
+
+		String userNo = userDAO.doGenerateUserNo(user.getAreaId());// 根据辖区ID生成用户编号
+		user.setUserNo(userNo);//// 设置用户编号
+		String abc = ChineseCharToEn.getAllFirstLetter(user.getUserName());// 获得用户名称的首拼字母(简码)
+		user.setAbc(abc);// 设置用户的简码
+		// user.setMeter(null);//设置用户对应的水表为null(不然会一起新增,设置映射不级联新增也可以)
+		userDAO.save(user);// 新户
+
+		meter.setUser(user);// 设置水表对应的用户为刚刚新建的用户(绑定用户)
+		String meterNo = meterDAO.doGenerateMeterNo(userNo);// 据用户编号生成水表编号
+		meter.setMeterNo(meterNo);// 设置水表编号
+		meterDAO.save(meter);// 新增水表
+		return userNo;
 	}
 
 	@Override

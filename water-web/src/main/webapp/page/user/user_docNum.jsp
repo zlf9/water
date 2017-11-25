@@ -10,11 +10,17 @@
 			var userNo = $("#userNo").val().trim();
 			var oldDocNum = $("#oldDocNum").val().trim();
 			var docNum = $("#docNum").val().trim();
-			if(oldDocNum == docNum){
+			
+			if(""==userNo){
+				$("#message").html("请查询需要进行档案号管理的用户后再进行操作");
+				return false;
+			}else if("" == docNum){
+				$("#message").html("档案编号不能为空");
+				return false;
+			}else if(oldDocNum == docNum){
 				$("#message").html("新档案编号和原档案编号相同");
 				return false;
 			}
-			return ""!=userNo&&""!=docNum&&""!=docNum;
 		}
 	</script>
 </head> 

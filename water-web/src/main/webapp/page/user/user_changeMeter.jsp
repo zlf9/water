@@ -117,7 +117,8 @@
 						</tr>
 					</tbody>
 				</table>
-				<div id="message" style="padding-left: 145px; color: red; display: block;"></div>
+				
+				<div id="message" style="padding-left: 66px; color: red; display: block;"></div>
 				<div style=" margin:20px 0px 0px 66px;" >
 					<button class="btn" type="submit">更换水表</button>
 				</div>
